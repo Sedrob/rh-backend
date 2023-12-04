@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  rh_backend_postres:
+    container_name: rh_backend_postres
+    image: postgres:16
+    environment:
+      POSTGRES_USER: rh_backend
+      POSTGRES_PASSWORD: rh_backend
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/var/www/rh_backend/docker-volumes/pgadmin
+    ports:
+      - 127.0.0.1:8080:5432
+    networks:
+      - rh_backend
+    restart: unless-stopped
+
+  rh_backend_pgadmin:
+    container_name: rh_backend_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: rh_backend@admin.com
+      PGADMIN_DEFAULT_PASSWORD: rh_backend
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/www/rh_backend/docker-volumes/pgadmin
+    ports:
+      - 127.0.0.1:5050:80
+    networks:
+      - rh_backend
+    restart: unless-stopped
+
+networks:
+  rh_backend:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
+
