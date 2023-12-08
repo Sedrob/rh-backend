@@ -18,4 +18,10 @@ export class EventsReviewsController{
         await this.newsServices.createReview(req.body)
         return res.send({status: 'ok'})
     }
+
+    @Get('/count/:eventsId')
+    async getAmountOfReviews(@Param('eventsId', new ParseIntPipe()) eventsId, @Res() res: Response){
+        const result = await this.newsServices.getAmountOfReviewsByEventId(eventsId)
+        return res.send(result);
+    }
 }
