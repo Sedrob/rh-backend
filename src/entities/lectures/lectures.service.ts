@@ -24,5 +24,14 @@ export class LecturesService{
             typeLectures: lecturesData.typeLectures
         })
         return await this.lecturesRepository.save(newLectures);
-    } 
+    }
+
+    public async getArchivedLectures()
+    {
+        return await this.lecturesRepository.find({
+            select: ['title', 'subtitle', 'description', 'createDate', 'typeLectures'],
+            relations: ['typeLectures'],
+            where: {stateArchive: true}
+        })
+    }
 }
