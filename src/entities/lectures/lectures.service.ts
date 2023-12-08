@@ -34,4 +34,12 @@ export class LecturesService{
             where: {stateArchive: true}
         })
     }
+
+    public async getLecture(id: number)
+    {
+        return await this.lecturesRepository.findOne({
+            relations: ['lectureSummaryId', 'presentitionId', 'lictureVideoId'],
+            where: {id: id}
+        })
+    }
 }

@@ -24,4 +24,10 @@ export class LecturesController{
         const result = await this.lecturesServices.getArchivedLectures()
         return res.send(result)
     }
+
+    @Get('/:id')
+    async getLectureById(@Param('id', new ParseIntPipe()) id, @Res() res: Response){
+        const result = await this.lecturesServices.getLecture(id)
+        return res.send(result)
+    }
 }
