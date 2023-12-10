@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39cde375-cf16-4d3e-8653-00da17c2cf46" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app.controller.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/app.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
+    <list default="true" id="39cde375-cf16-4d3e-8653-00da17c2cf46" name="Changes" comment="Implement presenting lectures feature">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/lectures/lectures.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/lectures/lectures.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/lectures/lectures.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/lectures/lectures.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,12 +18,37 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "BigWander174"
+  }
+}]]></component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="4beba7c5-4f23-41a3-96fc-8f76a3daca5b" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4beba7c5-4f23-41a3-96fc-8f76a3daca5b" />
+        <option name="url" value="https://github.com/Sedrob/rh-backend" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2WDB1Nioi9LNKfAZ404OVPee9y2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,18 +59,22 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "X:/rh-backend",
+    "git-widget-placeholder": "feature/events-and-lectures",
+    "last_opened_file_path": "/Users/ilya/Desktop/RH_GitHub/rh-backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "X:\\rh-backend\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "ts.external.directory.path": "/Users/ilya/Desktop/RH_GitHub/rh-backend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="X:\rh-backend\src\entities" />
     </key>
@@ -60,10 +89,44 @@
       <updated>1696257055090</updated>
       <workItem from="1696257056142" duration="877000" />
       <workItem from="1696511174381" duration="1541000" />
+      <workItem from="1702027067280" duration="2509000" />
     </task>
+    <task id="LOCAL-00001" summary="Implement events presenting">
+      <option name="closed" value="true" />
+      <created>1702037916664</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702037916664</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Implement presenting lectures feature">
+      <option name="closed" value="true" />
+      <created>1702046058764</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702046058764</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement events presenting" />
+    <MESSAGE value="Implement presenting lectures feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement presenting lectures feature" />
   </component>
 </project>

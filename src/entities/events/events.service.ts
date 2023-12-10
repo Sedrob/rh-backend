@@ -25,5 +25,13 @@ export class EventsService{
             dateEnd: eventsData.dateEnd
         })
         return await this.newsRepository.save(eventNew);
-    } 
+    }
+
+    public async getAllEvents()
+    {
+        return await this.newsRepository.find({
+            select: ['name', 'subtitle', 'dateStart', 'dateEnd', 'newsId', 'eventsType'],
+            relations: ['newsId', 'eventsType']
+        });
+    }
 }
