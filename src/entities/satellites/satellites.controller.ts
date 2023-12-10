@@ -9,12 +9,12 @@ export class SatellitesController{
     ){}
 
     @Get('/')
-    async getNews(@Req() req: Request, @Res() res: Response){
+    async getSatellites(@Req() req: Request, @Res() res: Response){
         return res.send({status: 'ok'})
     } 
-    // Запрос на создание новости 
+
     @Post('/')
-    async createNews(@Req() req:Request, @Res() res: Response){
+    async createSatellites(@Req() req:Request, @Res() res: Response){
         await this.satellitesServices.createSatellites(req.body)
         return res.send({status: 'ok'})
     }

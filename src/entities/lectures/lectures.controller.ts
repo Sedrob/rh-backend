@@ -25,6 +25,12 @@ export class LecturesController{
         return res.send(result)
     }
 
+    @Get('/all')
+    async getAllLectures(@Req() req: Request, @Res() res: Response){
+        const result = await this.lecturesServices.getAllLectures()
+        return res.send(result)
+    }
+
     @Get('/:id')
     async getLectureById(@Param('id', new ParseIntPipe()) id, @Res() res: Response){
         const result = await this.lecturesServices.getLecture(id)

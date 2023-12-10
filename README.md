@@ -71,3 +71,14 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## Start backend
+Создать .env в проекте 
+docker-compose up --build - сформировать контейнер
+pg admin
+Регистрация Servers - в Host = name container 
+Название и пользователь с .env
+## Requests to the app
+До загрузки "localhost:8000"
+

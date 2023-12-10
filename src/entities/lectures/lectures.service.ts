@@ -35,6 +35,15 @@ export class LecturesService{
         })
     }
 
+    public async getAllLectures()
+    {
+        return await this.lecturesRepository.find({
+            select: ['title', 'subtitle', 'description', 'createDate', 'typeLectures'],
+            relations: ['typeLectures'],
+            where: {stateArchive: false}
+        })
+    }
+
     public async getLecture(id: number)
     {
         return await this.lecturesRepository.findOne({
