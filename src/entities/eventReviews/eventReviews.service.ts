@@ -16,5 +16,16 @@ export class EventsReviewsService{
             description: Data.description,
         })
         return await this.newsRepository.save(eventNew);
-    } 
+    }
+
+    public async getAmountOfReviewsByEventId(eventId: number)
+    {
+        const eventsReviews = await this.newsRepository.find({
+            relations: ['eventsId']
+        })
+
+        return {
+            count: eventsReviews.filter((review) => review.eventsId.id == eventId).length
+        }
+    }
 }

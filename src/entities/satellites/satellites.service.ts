@@ -7,7 +7,6 @@ import { Satellites } from "./satellites.entity";
 @Injectable()
 export class SatellitesService{
     constructor(@InjectRepository(Satellites) private readonly newsRepository: Repository<Satellites>,){}
-    // Создание записи нововсти в БД
     public async createSatellites(data: any){
         const newNews = await this.newsRepository.save({
             name: data.name,
