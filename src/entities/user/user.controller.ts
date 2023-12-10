@@ -27,9 +27,20 @@ export class UserController {
     @Post('/') // ':' - парам забирается из url  
     //@UseInterceptors(FileInterceptor('')) // перехватываем файлы и данные
     async createUser(@Req() req: Request, @Res() res: Response, ){
-        
+
         await this.userServices.createUser(req.body)
         return res.send({status: 'ok'})
+    }
+
+    @Get('/users') // '/' - выглядит как users/
+    async getAll(@Req() req: Request, @Res() res: Response, ){
+        return this.userServices.getAllUsers(req.body);
+    }
+
+    @Post('/user/delete')
+    registration(@Req() req: Request, @Res() res: Response, ) {
+        return this.userServices.remove(req.body)
+
     }
 }
 
