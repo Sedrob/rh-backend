@@ -10,8 +10,10 @@ export class EventsController{
 
     @Get('/')
     async getEvent(@Req() req: Request, @Res() res: Response){
-        return res.send({status: 'ok'})
-    } 
+        const events = await this.newsServices.getAllEvents()
+        return res.send(events)
+    }
+
     // Запрос на создание новости 
     @Post('/')
     async createEvent(@Req() req:Request, @Res() res: Response){
