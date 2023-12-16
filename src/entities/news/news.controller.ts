@@ -12,7 +12,14 @@ export class NewsController{
     async getNews(@Req() req: Request, @Res() res: Response){
         const result = await this.newsServices.getAllNews()
         return res.send(result)
-    } 
+    }
+
+    @Get('/:id')
+    async getNewsById(@Param('id', new ParseIntPipe()) id, @Res() res: Response){
+        const result = await this.newsServices.getNewsById(id)
+        return res.send(result)
+    }
+
     // Запрос на создание новости 
     @Post('/')
     async createNews(@Req() req:Request, @Res() res: Response){

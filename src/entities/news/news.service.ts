@@ -46,4 +46,22 @@ export class NewsService{
 
         return news
     }
+
+    public async getNewsById(id: number): Promise<News>
+    {
+        return await this.newsRepository.findOne({
+            select: [
+                'id',
+                'title',
+                'subtitle',
+                'newsText',
+                'createDate',
+                'views',
+                'category',
+                'images',
+                'satellitesId'],
+            where: {id: id},
+            relations: ['category', 'images', 'satellitesId']
+        })
+    }
 }
