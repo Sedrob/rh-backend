@@ -1,6 +1,7 @@
 import { News } from '@entities/news/news.entity'
 import { Satellites } from '@entities/satellites/satellites.entity'
 import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm'
+import {ImageGallery} from "@entities/imageGallery/imageGallery.entity";
 
 @Entity('gallery')
 export class Gallery{
@@ -29,4 +30,7 @@ export class Gallery{
     @ManyToOne(() => News, (news) => news.id)
     @JoinColumn({name: 'news_id'})
     newsId: News
+
+    @OneToMany(() => ImageGallery, (images) => images.galleryId)
+    images: ImageGallery[]
 }

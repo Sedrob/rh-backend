@@ -10,7 +10,8 @@ export class NewsController{
 
     @Get('/')
     async getNews(@Req() req: Request, @Res() res: Response){
-        return res.send({status: 'ok'})
+        const result = await this.newsServices.getAllNews()
+        return res.send(result)
     } 
     // Запрос на создание новости 
     @Post('/')
