@@ -31,6 +31,8 @@ import { ViewPackageModule } from '@entities/viewPackage/viewPackage.module';
 import { EquipmentPackageModule } from '@entities/equipmentPackage/equipmentPackage.module';
 import { PackageModule } from "@entities/package/package.module";
 import { OptionsPackageModule } from "@entities/options-package/options-package.module";
+import { eventsRolesModule } from '@entities/eventsRoles/eventsRoles.module';
+import { signedUpModule } from '@entities/eventsSignUp/eventsSignUp.module';
 
 @Module({
   imports: [
@@ -63,6 +65,8 @@ import { OptionsPackageModule } from "@entities/options-package/options-package.
     EquipmentPackageModule, 
     PackageModule, 
     OptionsPackageModule, 
+    eventsRolesModule,
+    signedUpModule
   ],
   controllers: [AppController],
   providers: [AppService],
