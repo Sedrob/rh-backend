@@ -1,4 +1,4 @@
-import { Gallery } from '@entities/gallery/gallery.entity'
+import { ImageHash } from '@entities/imageHash/imageHash.entity'
 import { NewsCategory } from '@entities/newsCategory/newsCategory.entity'
 import { Satellites } from '@entities/satellites/satellites.entity'
 import { UserFavoritesNews } from '@entities/userFavoritesNews/userFavoritesNews.entity'
@@ -31,9 +31,9 @@ export class News{
     @Column({ name: 'state_archive', type: 'boolean', default: false })
     stateArchive: boolean
 
-    @ManyToOne(() => Gallery, (gallery) => gallery.id)
+    @ManyToOne(() => ImageHash, (ImageHash) => ImageHash.id)
     @JoinColumn({ name: 'images'})
-    images: Gallery
+    images: ImageHash
 
     @Column({ name: 'views', type: 'integer' })
     views: number

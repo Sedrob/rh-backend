@@ -33,16 +33,20 @@ export class NewsService{
     {
         let news =  await this.newsRepository.find({
             select: ['title', 'newsText', 'category', 'createDate', 'views', 'images'],
-            relations: ['category' ,'images.images.imageId']
+            relations: ['category' ,'images']
         })
 
-        news.forEach((item) => {
-            const images = item.images.images
-            if (images !== null && images.length > 1)
-            {
-                item.images.images = [images[0]]
-            }
-        })
+        // news.forEach((item) => {
+        //     const images = item.images.fileHash
+        //     if (images !== null && images.length > 1)
+        //     {
+        //         item.images.fileHash = fileHash
+        //     }
+        //     else
+        //     {
+
+        //     }
+        // })
 
         return news
     }
