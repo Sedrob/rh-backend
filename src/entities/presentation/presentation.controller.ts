@@ -2,7 +2,9 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { PresentationServices } from "./presentation.service";
+import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 
+@ApiTags('презентация')
 @Controller('presentation')
 export class PresentationController{
     constructor(
@@ -10,6 +12,26 @@ export class PresentationController{
     ){}
 
     @Post('/')
+    @ApiOperation({ summary: 'Создание презентации.' })
+    @ApiBody({
+        type: undefined,
+        examples: {
+            default: {
+                value: {
+                    docName: "название",
+                    fileHash: "хэш"
+                },
+            },
+        },
+    })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
     async createRoles(@Req() req: Request, @Res() res: Response, ){
         await this.presentationServices.createPresentation(req.body)
         return res.send({status: 'ok'})
