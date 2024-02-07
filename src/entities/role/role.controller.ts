@@ -2,7 +2,9 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { UserRoleServices } from "./role.service";
+import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 
+@ApiTags('роль')
 @Controller('roles')
 export class UserRoleController{
     constructor(
@@ -10,9 +12,30 @@ export class UserRoleController{
     ){}
 
     @Post('/')
+    @ApiOperation({ summary: 'Создание роли.' })
+    @ApiBody({
+        type: undefined,
+        examples: {
+            default: {
+                value: {
+                    name: "название",
+                    decription: "описание",
+                    code: "код",
+                    test: "test",
+                },
+            },
+        },
+    })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
     async createRoles(@Req() req: Request, @Res() res: Response, ){
         await this.userRoleServices.createRole(req.body)
         return res.send({status: 'ok'})
     }
-    
 }

@@ -1,7 +1,9 @@
 import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe } from "@nestjs/common";
 import { Response, Request } from "express";
 import { EquipmentPackageService } from "./equipmentPackage.service";
+import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 
+@ApiTags('набор экипировки')
 @Controller('equipmentPackage')
 export class EquipmentPackageController{
     constructor(
@@ -9,11 +11,34 @@ export class EquipmentPackageController{
     ){}
 
     @Get('/')
+    @ApiOperation({ summary: 'Получение набора экипировки. В разработке.' })
+    @ApiResponse({status: 200, description: "ok"})
     async getEvent(@Req() req: Request, @Res() res: Response){
         return res.send({status: 'ok'})
-    } 
+    }
+
     // Запрос на создание новости 
     @Post('/')
+    @ApiOperation({ summary: 'Создание набора экипировки' })
+    @ApiBody({
+        type: undefined,
+        examples: {
+            default: {
+                value: {
+                    equipmentId: 0,
+                    viewPackageId: 0,
+                },
+            },
+        },
+    })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
     async createEvent(@Req() req:Request, @Res() res: Response){
         await this.equipmentPackageServices.createEvent(req.body)
         return res.send({status: 'ok'})
