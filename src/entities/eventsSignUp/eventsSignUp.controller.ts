@@ -1,30 +1,33 @@
 import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe } from "@nestjs/common";
 import { Response, Request } from "express";
-import { StateEventsService } from "./stateEvents.service";
-import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import { signedUpService } from "./eventsSignUp.service";
+import {ApiBody, ApiOperation, ApiProperty, ApiResponse, ApiTags} from "@nestjs/swagger";
 
-@ApiTags('состояние события')
-@Controller('stateEvents')
-export class StateEventsController{
+@ApiTags("подписка на событие")
+@Controller('signedUp')
+export class signedUpController{
     constructor(
-        private readonly newsServices: StateEventsService,
+        private readonly signedUpServices: signedUpService,
     ){}
 
     @Get('/')
-    @ApiOperation({ summary: 'Получение состояния события. В разработке.' })
+    @ApiOperation({ summary: 'Получение подписки на событие' })
     @ApiResponse({status: 200, description: "ok"})
     async getEvent(@Req() req: Request, @Res() res: Response){
         return res.send({status: 'ok'})
-    } 
+    }
+
     // Запрос на создание новости 
     @Post('/')
-    @ApiOperation({ summary: 'Создание состояния события.' })
+    @ApiOperation({ summary: 'Создание подписки на событие.' })
     @ApiBody({
         type: undefined,
         examples: {
             default: {
                 value: {
-                    name: "название",
+                    singUser: 0,
+                    roleId: 0,
+                    eventsId: 0,
                 },
             },
         },
@@ -38,7 +41,7 @@ export class StateEventsController{
         }
     })
     async createEvent(@Req() req:Request, @Res() res: Response){
-        await this.newsServices.createState(req.body)
+        await this.signedUpServices.createSignedUp(req.body)
         return res.send({status: 'ok'})
     }
 }

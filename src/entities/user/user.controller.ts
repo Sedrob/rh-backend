@@ -3,7 +3,9 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 
 import { UserServices } from "./user.service";
+import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 
+@ApiTags("пользователь")
 @Controller('users')
 export class UserController {
     constructor(
@@ -12,11 +14,30 @@ export class UserController {
 
 
     @Get('/') // '/' - выглядит как users/
+    @ApiOperation({summary: "Получение всех пользователей. В разработке."})
     async getAllUsers(@Req() req: Request, @Res() res: Response, ){
 
     }
 
-    @Get('/:id') // ':' - парам забирается из url  
+    @Get('/:id') // ':' - парам забирается из url
+    @ApiOperation({ summary: 'Получение пользователя по id.' })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: "ok",
+                    data: {
+                        id: 0,
+                        middleName: "имя",
+                        firsName: "фамилия",
+                        lastName: "отчество",
+                        post: null,
+                        email: "электронная почта",
+                        pallada: null
+                    }
+                }
+            }
+        }
+    })
     async getUsers(@Req() req: Request, @Res() res: Response, @Param("id",ParseIntPipe) id: number){ // ParseIntPipe - Сделать получение данных int 
         const userData = await this.userServices.getUserData(id)
 
@@ -26,6 +47,31 @@ export class UserController {
 
     @Post('/') // ':' - парам забирается из url  
     //@UseInterceptors(FileInterceptor('')) // перехватываем файлы и данные
+    @ApiOperation({ summary: 'Создание пользователя.' })
+    @ApiBody({
+        type: undefined,
+        examples: {
+            default: {
+                value: {
+                    middleName: "имя",
+                    firsName: "фамилия",
+                    lastName: "отчество",
+                    password: "пароль",
+                    email: "электронная почта",
+                    pallada: 0,
+                    roles: 0
+                },
+            },
+        },
+    })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
     async createUser(@Req() req: Request, @Res() res: Response, ){
 
         await this.userServices.createUser(req.body)
@@ -33,14 +79,43 @@ export class UserController {
     }
 
     @Get('/users') // '/' - выглядит как users/
+    @ApiOperation({ summary: 'Получение всех пользователей.' })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
     async getAll(@Req() req: Request, @Res() res: Response, ){
         return this.userServices.getAllUsers(req.body);
     }
 
     @Post('/user/delete')
-    registration(@Req() req: Request, @Res() res: Response, ) {
-        return this.userServices.remove(req.body)
+    @ApiOperation({ summary: 'удаление пользователя по id. id передается по ключу email.' })
+    @ApiBody({
+        type: undefined,
+        examples: {
+            default: {
+                value: {
+                    email: 0
+                },
+            },
+        },
+    })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
+    async registration(@Req() req: Request, @Res() res: Response, ) {
+        await  this.userServices.remove(req.body)
 
+        return res.send({status: "ok"})
     }
 }
 

@@ -17,7 +17,6 @@ export class GalleryService{
             stateArchive: galleryData.stateArchive,
             satellitesId: galleryData.satellitesId,
             newsId: galleryData.newsId,
-            
         })
         return await this.newsRepository.save(galleryNew);
     } 

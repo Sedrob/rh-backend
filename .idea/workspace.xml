@@ -4,10 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39cde375-cf16-4d3e-8653-00da17c2cf46" name="Changes" comment="Implement presenting lectures feature">
+    <list default="true" id="39cde375-cf16-4d3e-8653-00da17c2cf46" name="Changes" comment="Implement feature to present news by id with defined properties except updateDate, favouritos, stateArchive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/dimension/dimension.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/dimension/dimension.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/equipment/equipment.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/equipment/equipment.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/equipmentPackage/equipmentPackage.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/equipmentPackage/equipmentPackage.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/eventReviews/eventReviews.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/eventReviews/eventReviews.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/events/events.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/events/events.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/eventsRoles/eventsRoles.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/eventsRoles/eventsRoles.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/eventsSignUp/eventsSignUp.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/eventsSignUp/eventsSignUp.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/fileVideo/fileVideo.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/fileVideo/fileVideo.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/gallery/gallery.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/gallery/gallery.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/gallery/gallery.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/gallery/gallery.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/imageGallery/imageGallery.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/imageGallery/imageGallery.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/imageHash/imageHash.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/imageHash/imageHash.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/lectures/lectures.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/lectures/lectures.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/lectures/lectures.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/lectures/lectures.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/news/news.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/news/news.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/newsCategory/newsCategory.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/newsCategory/newsCategory.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/options-package/options-package.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/options-package/options-package.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/options/options.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/options/options.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/package/package.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/package/package.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/presentation/presentation.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/presentation/presentation.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/projection/projection.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/projection/projection.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/result/result.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/result/result.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/role/role.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/role/role.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/satellites/satellites.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/satellites/satellites.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/stateEvents/stateEevents.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/stateEvents/stateEevents.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/summaryLectures/summaryLectures.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/summaryLectures/summaryLectures.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/typeEvents/typeEevents.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/typeEvents/typeEevents.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/typeLectures/typeLectures.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/typeLectures/typeLectures.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/user/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/userFavoritesNews/userFavoritesNews.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/userFavoritesNews/userFavoritesNews.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/viewPackage/viewPackage.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/viewPackage/viewPackage.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,17 +49,17 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="feature/news-presenting" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "BigWander174"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BigWander174&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="4beba7c5-4f23-41a3-96fc-8f76a3daca5b" />
   </component>
@@ -59,7 +88,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/events-and-lectures",
+    "git-widget-placeholder": "feature/docs",
     "last_opened_file_path": "/Users/ilya/Desktop/RH_GitHub/rh-backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -90,6 +119,9 @@
       <workItem from="1696257056142" duration="877000" />
       <workItem from="1696511174381" duration="1541000" />
       <workItem from="1702027067280" duration="2509000" />
+      <workItem from="1702635262592" duration="488000" />
+      <workItem from="1702702132079" duration="4572000" />
+      <workItem from="1703911379956" duration="14089000" />
     </task>
     <task id="LOCAL-00001" summary="Implement events presenting">
       <option name="closed" value="true" />
@@ -107,18 +139,69 @@
       <option name="project" value="LOCAL" />
       <updated>1702046058764</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add feature to present news with defined properties">
+      <option name="closed" value="true" />
+      <created>1702704048032</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702704048032</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add feature to present news with defined properties">
+      <option name="closed" value="true" />
+      <created>1702704212164</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702704212164</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implement feature to present news by id with defined properties except updateDate, favouritos, stateArchive">
+      <option name="closed" value="true" />
+      <created>1702705585415</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702705585415</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="feature/docs" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/docs" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -127,6 +210,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implement events presenting" />
     <MESSAGE value="Implement presenting lectures feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement presenting lectures feature" />
+    <MESSAGE value="Add feature to present news with defined properties" />
+    <MESSAGE value="Implement feature to present news by id with defined properties except updateDate, favouritos, stateArchive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement feature to present news by id with defined properties except updateDate, favouritos, stateArchive" />
   </component>
 </project>
