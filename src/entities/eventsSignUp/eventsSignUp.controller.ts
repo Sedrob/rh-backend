@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { signedUpService } from "./eventsSignUp.service";
 import {ApiBody, ApiOperation, ApiProperty, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateEventSignUpsDto} from "@entities/eventsSignUp/createEventSignUpsDto";
 
 @ApiTags("подписка на событие")
 @Controller('signedUp')
@@ -21,7 +22,7 @@ export class signedUpController{
     @Post('/')
     @ApiOperation({ summary: 'Создание подписки на событие.' })
     @ApiBody({
-        type: undefined,
+        type: CreateEventSignUpsDto,
         examples: {
             default: {
                 value: {

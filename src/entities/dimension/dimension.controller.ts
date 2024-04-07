@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Res } from "@ne
 import { DimensionService } from './dimension.service';
 import { Request, Response } from "express";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateDimensionDto} from "@entities/dimension/createDimensionDto";
 
 @ApiTags('измерение')
 @Controller('dimensions')
@@ -11,7 +12,7 @@ export class DimensionController {
   @Post()
   @ApiOperation({ summary: 'Создание измерения' })
   @ApiBody({
-    type: undefined,
+    type: CreateDimensionDto,
     examples: {
       default: {
         value: {

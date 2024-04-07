@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { SatellitesService } from "./satellites.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateSatellitesDto} from "@entities/satellites/createSatellitesDto";
 
 @ApiTags('спутник')
 @Controller('satellites')
@@ -20,7 +21,7 @@ export class SatellitesController{
     @Post('/')
     @ApiOperation({ summary: 'Создание спутника.' })
     @ApiBody({
-        type: undefined,
+        type: CreateSatellitesDto,
         examples: {
             default: {
                 value: {

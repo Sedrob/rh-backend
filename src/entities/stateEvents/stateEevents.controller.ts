@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { StateEventsService } from "./stateEvents.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateStateEventDto} from "@entities/stateEvents/createStateEventDto";
 
 @ApiTags('состояние события')
 @Controller('stateEvents')
@@ -20,7 +21,7 @@ export class StateEventsController{
     @Post('/')
     @ApiOperation({ summary: 'Создание состояния события.' })
     @ApiBody({
-        type: undefined,
+        type: CreateStateEventDto,
         examples: {
             default: {
                 value: {

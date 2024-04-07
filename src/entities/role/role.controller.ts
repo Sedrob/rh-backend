@@ -3,6 +3,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { UserRoleServices } from "./role.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateRoleDto} from "@entities/role/createRoleDto";
 
 @ApiTags('роль')
 @Controller('roles')
@@ -14,7 +15,7 @@ export class UserRoleController{
     @Post('/')
     @ApiOperation({ summary: 'Создание роли.' })
     @ApiBody({
-        type: undefined,
+        type: CreateRoleDto,
         examples: {
             default: {
                 value: {

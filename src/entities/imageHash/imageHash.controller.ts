@@ -3,6 +3,7 @@ import { Response, Request } from "express";
 
 import { ImageHashService } from "./imageHash.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateImageHashDto} from "@entities/imageHash/createImageHashDto";
 
 @ApiTags("хэш изображения")
 @Controller('image_hash')
@@ -21,7 +22,7 @@ export class ImageHashController{
     @Post('/')
     @ApiOperation({ summary: 'Создание хэша изображения.' })
     @ApiBody({
-        type: undefined,
+        type: CreateImageHashDto,
         examples: {
             default: {
                 value: {

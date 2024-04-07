@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { eventsRolesService } from "./eventsRoles.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateEventRoleDto} from "@entities/eventsRoles/createEventRoleDto";
 
 @ApiTags("роли в событии")
 @Controller('eventsRoles')
@@ -21,7 +22,7 @@ export class eventsRolesController{
     @Post('/')
     @ApiOperation({ summary: 'Создание роли в событии.' })
     @ApiBody({
-        type: undefined,
+        type: CreateEventRoleDto,
         examples: {
             default: {
                 value: {

@@ -3,6 +3,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { UserFavoritesNewsService } from "./userFavoritesNews.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateUserFavouriteNewsDto} from "@entities/userFavoritesNews/createUserFavouriteNewsDto";
 
 @ApiTags("любимые новости пользователя")
 @Controller('userFavoritesNews')
@@ -14,7 +15,7 @@ export class UserFavoritesNewsController {
     @Post('/')
     @ApiOperation({ summary: 'Создание любимой новости пользователя.' })
     @ApiBody({
-        type: undefined,
+        type: CreateUserFavouriteNewsDto,
         examples: {
             default: {
                 value: {

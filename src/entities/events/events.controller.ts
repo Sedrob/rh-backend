@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { EventsService } from "./events.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateEventDto} from "@entities/events/createEventDto";
 
 @ApiTags("событие")
 @Controller('events')
@@ -48,7 +49,7 @@ export class EventsController{
     @Post('/')
     @ApiOperation({ summary: 'Создание события' })
     @ApiBody({
-        type: undefined,
+        type: CreateEventDto,
         examples: {
             default: {
                 value: {

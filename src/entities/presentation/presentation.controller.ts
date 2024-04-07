@@ -3,6 +3,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { PresentationServices } from "./presentation.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreatePresentationDto} from "@entities/presentation/createPresentationDto";
 
 @ApiTags('презентация')
 @Controller('presentation')
@@ -14,7 +15,7 @@ export class PresentationController{
     @Post('/')
     @ApiOperation({ summary: 'Создание презентации.' })
     @ApiBody({
-        type: undefined,
+        type: CreatePresentationDto,
         examples: {
             default: {
                 value: {

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Res } from "@ne
 import { ResultService } from './result.service';
 import { Request, Response } from 'express';
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateResultDto} from "@entities/result/createResultDto";
 
 @ApiTags("результат")
 @Controller('result')
@@ -11,7 +12,7 @@ export class ResultController {
   @Post()
   @ApiOperation({ summary: 'Создание результата.' })
   @ApiBody({
-    type: undefined,
+    type: CreateResultDto,
     examples: {
       default: {
         value: {
