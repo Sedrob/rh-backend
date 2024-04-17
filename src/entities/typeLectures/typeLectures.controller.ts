@@ -3,6 +3,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { TypeLecturesServices } from "./typeLectures.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateTypeLectures} from "@entities/typeLectures/createTypeLectures";
 
 @ApiTags("тип лекций")
 @Controller('typeLectures')
@@ -14,7 +15,7 @@ export class TypeLecturesController{
     @Post('/')
     @ApiOperation({ summary: 'Создание типа лекции.' })
     @ApiBody({
-        type: undefined,
+        type: CreateTypeLectures,
         examples: {
             default: {
                 value: {

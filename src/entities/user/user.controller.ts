@@ -4,6 +4,7 @@ import { Response, Request } from "express";
 
 import { UserServices } from "./user.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateUserDto} from "@entities/user/createUserDto";
 
 @ApiTags("пользователь")
 @Controller('users')
@@ -49,7 +50,7 @@ export class UserController {
     //@UseInterceptors(FileInterceptor('')) // перехватываем файлы и данные
     @ApiOperation({ summary: 'Создание пользователя.' })
     @ApiBody({
-        type: undefined,
+        type: CreateUserDto,
         examples: {
             default: {
                 value: {

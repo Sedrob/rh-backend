@@ -3,6 +3,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { VideoServices } from "./fileVideo.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateFileVideoDto} from "@entities/fileVideo/createFileVideoDto";
 
 @ApiTags("файл и видео")
 @Controller('video')
@@ -14,7 +15,7 @@ export class VideoController{
     @Post('/')
     @ApiOperation({ summary: 'Создание файла и видео' })
     @ApiBody({
-        type: undefined,
+        type: CreateFileVideoDto,
         examples: {
             default: {
                 value: {

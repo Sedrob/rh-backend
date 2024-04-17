@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { NewsCategoryService } from "./newsCategory.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateNewsCategoryDto} from "@entities/newsCategory/createNewsCategoryDto";
 
 @ApiTags("категория новостей")
 @Controller('newsCategory')
@@ -20,7 +21,7 @@ export class NewsCategoryController{
     @Post('/')
     @ApiOperation({ summary: 'Создание новости.' })
     @ApiBody({
-        type: undefined,
+        type: CreateNewsCategoryDto,
         examples: {
             default: {
                 value: {

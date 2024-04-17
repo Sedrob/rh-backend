@@ -3,6 +3,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Response, Request } from "express";
 import { SummaryLecturesServices } from "./summaryLectures.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateSummaryLecturesDto} from "@entities/summaryLectures/createSummaryLecturesDto";
 
 @ApiTags("документация лекции")
 @Controller('summaryLectures')
@@ -14,7 +15,7 @@ export class SummaryLecturesController{
     @Post('/')
     @ApiOperation({ summary: 'Создание документации лекции.' })
     @ApiBody({
-        type: undefined,
+        type: CreateSummaryLecturesDto,
         examples: {
             default: {
                 value: {

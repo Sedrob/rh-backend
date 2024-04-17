@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { EquipmentService } from "./equipment.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateEquipmentDto} from "@entities/equipment/createEquipmentDto";
 
 @ApiTags('экипировка')
 @Controller('equipment')
@@ -20,7 +21,7 @@ export class EquipmentController{
     @Post('/')
     @ApiOperation({ summary: 'Создание экипировки' })
     @ApiBody({
-        type: undefined,
+        type: CreateEquipmentDto,
         examples: {
             default: {
                 value: {

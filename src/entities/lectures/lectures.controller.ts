@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { LecturesService } from "./lectures.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateLectureDto} from "@entities/lectures/createLectureDto";
 
 @ApiTags("лекции")
 @Controller('lectures')
@@ -20,7 +21,7 @@ export class LecturesController{
     @Post('/')
     @ApiOperation({ summary: 'Создание лекции' })
     @ApiBody({
-        type: undefined,
+        type: CreateLectureDto,
         examples: {
             default: {
                 value: {

@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { NewsService } from "./news.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateNewsDto} from "@entities/news/createNewsDto";
 
 @ApiTags('новости')
 @Controller('news')
@@ -87,7 +88,7 @@ export class NewsController{
     @Post('/')
     @ApiOperation({ summary: 'Создание новости' })
     @ApiBody({
-        type: undefined,
+        type: CreateNewsDto,
         examples: {
             default: {
                 value: {
