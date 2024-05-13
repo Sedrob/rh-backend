@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { ImageGalleryService } from "./imageGallery.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateImageGalleryDto} from "@entities/imageGallery/createImageGalleryDto";
 
 @ApiTags("фотография галереи")
 @Controller('imageGallery')
@@ -20,7 +21,7 @@ export class ImageGalleryController{
     @Post('/')
     @ApiOperation({ summary: 'create user' })
     @ApiBody({
-        type: undefined,
+        type: CreateImageGalleryDto,
         examples: {
             default: {
                 value: {

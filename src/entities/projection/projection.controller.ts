@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { ProjectionService } from "./projection.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateProjectionDto} from "@entities/projection/createProjectionDto";
 
 @ApiTags("проектирование")
 @Controller('projection')
@@ -20,7 +21,7 @@ export class ProjectionController{
     @Post('/')
     @ApiOperation({ summary: 'Создание проектирования.' })
     @ApiBody({
-        type: undefined,
+        type: CreateProjectionDto,
         examples: {
             default: {
                 value: {

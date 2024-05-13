@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { ViewPackageService } from "./viewPackage.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateViewPackageDto} from "@entities/viewPackage/createViewPackageDto";
 
 @ApiTags("представление набора")
 @Controller('viewPackage')
@@ -20,7 +21,7 @@ export class ViewPackageController{
     @Post('/')
     @ApiOperation({ summary: 'Создание наборов и представлений.' })
     @ApiBody({
-        type: undefined,
+        type: CreateViewPackageDto,
         examples: {
             default: {
                 value: {

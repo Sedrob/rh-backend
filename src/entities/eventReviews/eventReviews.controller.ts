@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, P
 import { Response, Request } from "express";
 import { EventsReviewsService } from "./eventReviews.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateEventReviewDto} from "@entities/eventReviews/createEventReviewDto";
 
 @ApiTags("комментарии к событию")
 @Controller('eventReviews')
@@ -21,7 +22,7 @@ export class EventsReviewsController{
     @Post('/')
     @ApiOperation({ summary: 'Создание новости' })
     @ApiBody({
-        type: undefined,
+        type: CreateEventReviewDto,
         examples: {
             default: {
                 value: {

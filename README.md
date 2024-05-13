@@ -82,3 +82,5 @@ pg admin
 ## Requests to the app
 До загрузки "localhost:8000"
 
+Просмотреть документацию можно по введя ссылку /api/docs/ к адресу 
+

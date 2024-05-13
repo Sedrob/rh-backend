@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Res } from "@ne
 import { OptionsService } from './options.service';
 import { Request, Response } from 'express';
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {CreateOptionDto} from "@entities/options/createOptionDto";
 
 @ApiTags("опции")
 @Controller('options')
@@ -11,7 +12,7 @@ export class OptionsController {
   @Post()
   @ApiOperation({ summary: 'Создание опции.' })
   @ApiBody({
-    type: undefined,
+    type: CreateOptionDto,
     examples: {
       default: {
         value: {
