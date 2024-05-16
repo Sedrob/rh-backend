@@ -100,7 +100,7 @@ export class UserController {
         examples: {
             default: {
                 value: {
-                    email: 0
+                    id: 0
                 },
             },
         },

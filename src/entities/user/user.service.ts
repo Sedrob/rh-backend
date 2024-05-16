@@ -44,8 +44,8 @@ export class UserServices{
         return user;
     }
 
-    public async remove(userData: any){
-        const delUser = await this.userRepository.delete(userData.email)
+    public async remove(id: string){
+        const delUser = await this.userRepository.delete(id)
         console.log('delete user completed');
         return delUser;
 
