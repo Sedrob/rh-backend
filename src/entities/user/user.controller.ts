@@ -43,7 +43,12 @@ export class UserController {
         const userData = await this.userServices.getUserData(id)
 
         delete userData.password //Убрать вывод строки 
-        return res.send({status: 'ok', data: userData}) //Получаем id пользователя 
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: userData
+        }) //Получаем id пользователя 
     }
 
     @Post('/') // ':' - парам забирается из url  
@@ -75,8 +80,13 @@ export class UserController {
     })
     async createUser(@Req() req: Request, @Res() res: Response, ){
 
-        await this.userServices.createUser(req.body)
-        return res.send({status: 'ok'})
+        const result = await this.userServices.createUser(req.body)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     @Get('/users') // '/' - выглядит как users/
@@ -90,7 +100,13 @@ export class UserController {
         }
     })
     async getAll(@Req() req: Request, @Res() res: Response, ){
-        return this.userServices.getAllUsers(req.body);
+        const result = this.userServices.getAllUsers(req.body)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        });
     }
 
     @Post('/user/delete')
@@ -100,7 +116,7 @@ export class UserController {
         examples: {
             default: {
                 value: {
-                    email: 0
+                    id: 0
                 },
             },
         },

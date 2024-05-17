@@ -8,13 +8,13 @@ import {CreateNewsCategoryDto} from "@entities/newsCategory/createNewsCategoryDt
 @Controller('newsCategory')
 export class NewsCategoryController{
     constructor(
-        private readonly newsServices: NewsCategoryService,
+        private readonly categoryServices: NewsCategoryService,
     ){}
 
     @Get('/')
     @ApiOperation({ summary: 'Получение категории новостей. В разработке.' })
     @ApiResponse({status: 200, description: "ok"})
-    async getNews(@Req() req: Request, @Res() res: Response){
+    async getCategoty(@Req() req: Request, @Res() res: Response){
         return res.send({status: 'ok'})
     } 
     // Запрос на создание категории 
@@ -39,8 +39,13 @@ export class NewsCategoryController{
             }
         }
     })
-    async createNews(@Req() req:Request, @Res() res: Response){
-        await this.newsServices.createCategory(req.body)
-        return res.send({status: 'ok'})
+    async createCategoty(@Req() req:Request, @Res() res: Response){
+        const result = await this.categoryServices.createCategory(req.body)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 }

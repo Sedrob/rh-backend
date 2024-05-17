@@ -8,14 +8,20 @@ import {CreateEventReviewDto} from "@entities/eventReviews/createEventReviewDto"
 @Controller('eventReviews')
 export class EventsReviewsController{
     constructor(
-        private readonly newsServices: EventsReviewsService,
+        private readonly eventsServices: EventsReviewsService,
     ){}
 
     @Get('/')
     @ApiOperation({ summary: 'Получение комментария к событию. В разработке.' })
     @ApiResponse({status: 200, description: "ok"})
     async getEvent(@Req() req: Request, @Res() res: Response){
-        return res.send({status: 'ok'})
+        const result = this.eventsServices.createReview(req.body)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     // Запрос на создание новости 
@@ -42,7 +48,7 @@ export class EventsReviewsController{
         }
     })
     async createEvent(@Req() req:Request, @Res() res: Response){
-        await this.newsServices.createReview(req.body)
+        await this.eventsServices.createReview(req.body)
         return res.send({status: 'ok'})
     }
 
@@ -57,7 +63,12 @@ export class EventsReviewsController{
     }
     })
     async getAmountOfReviews(@Param('eventsId', new ParseIntPipe()) eventsId, @Res() res: Response){
-        const result = await this.newsServices.getAmountOfReviewsByEventId(eventsId)
-        return res.send(result);
+        const result = await this.eventsServices.getAmountOfReviewsByEventId(eventsId)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        });
     }
 }

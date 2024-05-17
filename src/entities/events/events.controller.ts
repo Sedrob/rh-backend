@@ -41,8 +41,13 @@ export class EventsController{
         }
         }})
     async getEvent(@Req() req: Request, @Res() res: Response){
-        const events = await this.newsServices.getAllEvents()
-        return res.send(events)
+        const result = await this.newsServices.getAllEvents()
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     // Запрос на создание новости 
@@ -77,8 +82,13 @@ export class EventsController{
         }
     })
     async createEvent(@Req() req:Request, @Res() res: Response){
-        await this.newsServices.createEvent(req.body)
-        return res.send({status: 'ok'})
+        const result = await this.newsServices.createEvent(req.body)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     @Delete('/:id')
