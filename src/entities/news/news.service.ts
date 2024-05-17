@@ -50,7 +50,7 @@ export class NewsService{
         //     }
         // })
 
-        return [news, {status: 'ok'}]
+        return news
     }
 
     public async getNewsById(id: number): Promise<News>
