@@ -28,13 +28,15 @@ export class NewsService{
         })
         return await this.newsRepository.save(newNews);
     }
-
     public async getAllNews()
     {
+        
+
         let news =  await this.newsRepository.find({
             select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'images'],
             relations: ['category' ,'images']
         })
+        
 
         // news.forEach((item) => {
         //     const images = item.images.fileHash
@@ -48,7 +50,7 @@ export class NewsService{
         //     }
         // })
 
-        return news
+        return [news, {status: 'ok'}]
     }
 
     public async getNewsById(id: number): Promise<News>

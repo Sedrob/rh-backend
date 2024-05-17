@@ -40,7 +40,7 @@ export class NewsCategoryController{
         }
     })
     async createNews(@Req() req:Request, @Res() res: Response){
-        await this.newsServices.createCategory(req.body)
-        return res.send({status: 'ok'})
+        const result = await this.newsServices.createCategory(req.body)
+        return res.send(result)
     }
 }

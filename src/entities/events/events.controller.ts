@@ -77,7 +77,7 @@ export class EventsController{
         }
     })
     async createEvent(@Req() req:Request, @Res() res: Response){
-        await this.newsServices.createEvent(req.body)
-        return res.send({status: 'ok'})
+        const result = await this.newsServices.createEvent(req.body)
+        return res.send(result)
     }
 }
