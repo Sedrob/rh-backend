@@ -7,13 +7,13 @@ import { NewsCategory } from "./newsCategory.entity";
 
 @Injectable()
 export class NewsCategoryService{
-    constructor(@InjectRepository(NewsCategory) private readonly newsRepository: Repository<NewsCategory>,){}
+    constructor(@InjectRepository(NewsCategory) private readonly categotyRepository: Repository<NewsCategory>,){}
     // Создание записи нововсти в БД
     public async createCategory(categoryData: any){
-        const newNews = await this.newsRepository.save({
+        const newNews = await this.categotyRepository.save({
             category: categoryData.category,
             title: categoryData.title,
         })
-        return await this.newsRepository.save(newNews);
+        return await this.categotyRepository.save(newNews);
     } 
 }

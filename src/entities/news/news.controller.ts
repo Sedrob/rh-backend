@@ -39,7 +39,12 @@ export class NewsController{
     })
     async getNews(@Req() req: Request, @Res() res: Response){
         const result = await this.newsServices.getAllNews()
-        return res.send(result)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     @Get('/:id')
@@ -81,7 +86,12 @@ export class NewsController{
     })
     async getNewsById(@Param('id', new ParseIntPipe()) id, @Res() res: Response){
         const result = await this.newsServices.getNewsById(id)
-        return res.send(result)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     // Запрос на создание новости 
@@ -119,6 +129,11 @@ export class NewsController{
     })
     async createNews(@Req() req:Request, @Res() res: Response){
         const result = await this.newsServices.createNews(req.body)
-        return res.send(result)
+        return res.send({
+            status: 'success',
+            code: 201,
+            message: '',
+            data: result
+        })
     }
 }

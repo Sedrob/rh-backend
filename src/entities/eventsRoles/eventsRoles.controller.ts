@@ -42,6 +42,11 @@ export class eventsRolesController{
     })
     async createEventsRoles(@Req() req:Request, @Res() res: Response){
         const result = await this.eventsRolesServices.createEventsRoles(req.body)
-        return res.send(result)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 }

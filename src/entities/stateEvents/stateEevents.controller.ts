@@ -40,6 +40,11 @@ export class StateEventsController{
     })
     async createEvent(@Req() req:Request, @Res() res: Response){
         const result = await this.newsServices.createState(req.body)
-        return res.send(result)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 }

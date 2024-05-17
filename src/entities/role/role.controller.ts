@@ -36,7 +36,12 @@ export class UserRoleController{
         }
     })
     async createRoles(@Req() req: Request, @Res() res: Response, ){
-        await this.userRoleServices.createRole(req.body)
-        return res.send({status: 'ok'})
+        const result = await this.userRoleServices.createRole(req.body)
+        return res.send({
+            status: 'success',
+            code: 201,
+            message: '',
+            data: result
+        })
     }
 }
