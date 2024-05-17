@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe } from "@nestjs/common";
 import { Response, Request } from "express";
 import { NewsService } from "./news.service";
-import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBody, ApiOperation, ApiParam, ApiProperty, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateNewsDto} from "@entities/news/createNewsDto";
 
 @ApiTags('новости')
@@ -135,5 +135,21 @@ export class NewsController{
             message: '',
             data: result
         })
+    }
+
+    @Delete('/:id')
+    @ApiOperation({ summary: 'удаление новости' })
+    @ApiParam({name: 'id', description: "id новости"})
+    @ApiResponse({status: 200, description: 'удалено', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
+    async deleteNews(@Param('id', new ParseIntPipe()) id: number, @Res() res: Response){
+        await this.newsServices.deleteNews(id)
+        return res.send({status: 'ok'})
     }
 }

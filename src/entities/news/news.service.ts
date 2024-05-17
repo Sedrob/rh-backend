@@ -74,6 +74,19 @@ export class NewsService{
         })
     }
     
+
+    public async deleteNews(id: number)
+    {
+        const news = await this.newsRepository.findOne({where : {id: id}})
+        if (news.stateArchive)
+        {
+            throw new BadRequestException(`news with id ${id} is already archived`)
+        }
+        news.stateArchive = true
+        
+        await this.newsRepository.save(news)
+    }
+  
     private validateNewsRequest(newsData: any)
     {
         if (newsData.newsText === null || newsData.category === null || newsData.title === undefined)

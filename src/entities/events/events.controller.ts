@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe } from "@nestjs/common";
 import { Response, Request } from "express";
 import { EventsService } from "./events.service";
-import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateEventDto} from "@entities/events/createEventDto";
 
 @ApiTags("событие")
@@ -89,5 +89,22 @@ export class EventsController{
             message: '',
             data: result
         })
+    }
+
+    @Delete('/:id')
+    @ApiOperation({ summary: 'удаление мероприятия' })
+    @ApiParam({name: 'id', description: "id мероприятия"})
+    @ApiResponse({status: 200, description: 'удалено', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
+    async deleteNews(@Param('id', new ParseIntPipe()) id: number, @Res() res: Response){
+        console.log(id)
+        await this.newsServices.deleteEvent(id)
+        return res.send({status: 'ok'})
     }
 }
