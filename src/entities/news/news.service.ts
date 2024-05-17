@@ -1,4 +1,4 @@
-import {Inject, Injectable} from "@nestjs/common";
+import {BadRequestException, Inject, Injectable} from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { News } from "./news.entity";
@@ -67,5 +67,17 @@ export class NewsService{
             where: {id: id},
             relations: ['category', 'images', 'satellitesId']
         })
+    }
+    
+    public async deleteNews(id: number)
+    {
+        const news = await this.newsRepository.findOne({where : {id: id}})
+        if (news.stateArchive)
+        {
+            throw new BadRequestException(`news with id ${id} is already archived`)
+        }
+        news.stateArchive = true
+        
+        await this.newsRepository.save(news)
     }
 }
