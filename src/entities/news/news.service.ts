@@ -1,4 +1,4 @@
-import {Inject, Injectable} from "@nestjs/common";
+import {BadRequestException, Inject, Injectable} from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { News } from "./news.entity";
@@ -10,6 +10,9 @@ export class NewsService{
     constructor(@InjectRepository(News) private readonly newsRepository: Repository<News>){}
     // Создание записи нововсти в БД
     public async createNews(newsData: any){
+        
+        this.validateNewsRequest(newsData)
+        
         const newNews = await this.newsRepository.save({
             category: newsData.category,
             title: newsData.title,
@@ -28,13 +31,15 @@ export class NewsService{
         })
         return await this.newsRepository.save(newNews);
     }
-
     public async getAllNews()
     {
+        
+
         let news =  await this.newsRepository.find({
             select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'images'],
             relations: ['category' ,'images']
         })
+        
 
         // news.forEach((item) => {
         //     const images = item.images.fileHash
@@ -67,5 +72,26 @@ export class NewsService{
             where: {id: id},
             relations: ['category', 'images', 'satellitesId']
         })
+    }
+    
+
+    public async deleteNews(id: number)
+    {
+        const news = await this.newsRepository.findOne({where : {id: id}})
+        if (news.stateArchive)
+        {
+            throw new BadRequestException(`news with id ${id} is already archived`)
+        }
+        news.stateArchive = true
+        
+        await this.newsRepository.save(news)
+    }
+  
+    private validateNewsRequest(newsData: any)
+    {
+        if (newsData.newsText === null || newsData.category === null || newsData.title === undefined)
+        {
+            throw new BadRequestException("`newsData`, `category`, `title` fields are required")
+        }
     }
 }

@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe } from "@nestjs/common";
 import { Response, Request } from "express";
 import { NewsService } from "./news.service";
-import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBody, ApiOperation, ApiParam, ApiProperty, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateNewsDto} from "@entities/news/createNewsDto";
 
 @ApiTags('новости')
@@ -39,7 +39,12 @@ export class NewsController{
     })
     async getNews(@Req() req: Request, @Res() res: Response){
         const result = await this.newsServices.getAllNews()
-        return res.send(result)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     @Get('/:id')
@@ -81,7 +86,12 @@ export class NewsController{
     })
     async getNewsById(@Param('id', new ParseIntPipe()) id, @Res() res: Response){
         const result = await this.newsServices.getNewsById(id)
-        return res.send(result)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 
     // Запрос на создание новости 
@@ -118,7 +128,28 @@ export class NewsController{
         }
     })
     async createNews(@Req() req:Request, @Res() res: Response){
-        await this.newsServices.createNews(req.body)
+        const result = await this.newsServices.createNews(req.body)
+        return res.send({
+            status: 'success',
+            code: 201,
+            message: '',
+            data: result
+        })
+    }
+
+    @Delete('/:id')
+    @ApiOperation({ summary: 'удаление новости' })
+    @ApiParam({name: 'id', description: "id новости"})
+    @ApiResponse({status: 200, description: 'удалено', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
+    async deleteNews(@Param('id', new ParseIntPipe()) id: number, @Res() res: Response){
+        await this.newsServices.deleteNews(id)
         return res.send({status: 'ok'})
     }
 }
