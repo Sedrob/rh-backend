@@ -14,19 +14,16 @@ export class Satellites{
     @Column({ name: 'title', type: 'varchar' })
     title: string
 
-    @Column({ name: 'purpose', type: 'varchar' })
+    @Column({ name: 'description', type: 'varchar'})
+    description: string
+
+    @Column({ name: 'purpose', type: 'varchar' })//Цель полета
     purpose: string
 
-    @Column({ name: 'objectiv', type: 'varchar' })
-    objectiv: string
-
-    @Column({ name: 'target', type: 'varchar' })
-    target: string
-
-    @Column({ name: 'date_orbit', type: 'timestamp' })
+    @Column({ name: 'date_orbit', type: 'timestamp', nullable: true })
     dateOrbit: Date
 
-    @Column({ name: 'date_out', type: 'timestamp'} )
+    @Column({ name: 'date_out', type: 'timestamp', nullable: true})
     dateOut: Date
 
     @Column({ name: 'state_archive', type: 'boolean', default: false })

@@ -18,9 +18,6 @@ export class User {
   @Column({ name: 'last_name', type: 'text' })
     lastName: string
 
-  @Column({name: 'post', type: 'text', nullable: true})
-    post: string
-
   @Column({ name: 'password_hash', type: 'varchar' })
     password: string
 

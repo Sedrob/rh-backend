@@ -15,7 +15,13 @@ export class SatellitesController{
     @ApiOperation({ summary: 'Получение спутника. В разработке.' })
     @ApiResponse({status: 200, description: "ok"})
     async getSatellites(@Req() req: Request, @Res() res: Response){
-        return res.send({status: 'ok'})
+        const result = await this.satellitesServices.getAllSatellites() 
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     } 
 
     @Post('/')
@@ -45,7 +51,12 @@ export class SatellitesController{
         }
     })
     async createSatellites(@Req() req:Request, @Res() res: Response){
-        await this.satellitesServices.createSatellites(req.body)
-        return res.send({status: 'ok'})
+        const result = await this.satellitesServices.createSatellites(req.body)
+        return res.send({
+            status: 'success',
+            code: 200,
+            message: '',
+            data: result
+        })
     }
 }
