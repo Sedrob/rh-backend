@@ -22,17 +22,10 @@ import { SummaryLecturesModule } from '@entities/summaryLectures/summaryLectures
 import { PresentationModule } from '@entities/presentation/presentation.module';
 import { VideoModule } from '@entities/fileVideo/fileVideo.module';
 import { TypeLecturesModule } from '@entities/typeLectures/typeLectures.module';
-import { DimensionModule } from "@entities/dimension/dimension.module";
-import { OptionsModule } from "@entities/options/options.module";
-import { ResultModule } from "@entities/result/result.module";
-import { EquipmentModule } from '@entities/equipment/equipment.module';
-import { ProjectiontModule } from '@entities/projection/projection.module';
-import { ViewPackageModule } from '@entities/viewPackage/viewPackage.module';
-import { EquipmentPackageModule } from '@entities/equipmentPackage/equipmentPackage.module';
-import { PackageModule } from "@entities/package/package.module";
-import { OptionsPackageModule } from "@entities/options-package/options-package.module";
 import { eventsRolesModule } from '@entities/eventsRoles/eventsRoles.module';
 import { signedUpModule } from '@entities/eventsSignUp/eventsSignUp.module';
+import { CategorySatellitesModule } from '@entities/categorySatellites/categorySatellites.module';
+import { SatellitesModule } from '@entities/satellites/satellites.module';
 
 @Module({
   imports: [
@@ -56,17 +49,10 @@ import { signedUpModule } from '@entities/eventsSignUp/eventsSignUp.module';
     PresentationModule, 
     VideoModule, 
     TypeLecturesModule, 
-    DimensionModule, 
-    OptionsModule, 
-    ResultModule, 
-    EquipmentModule, 
-    ProjectiontModule, 
-    ViewPackageModule, 
-    EquipmentPackageModule, 
-    PackageModule, 
-    OptionsPackageModule, 
     eventsRolesModule,
-    signedUpModule
+    signedUpModule,
+    CategorySatellitesModule,
+    SatellitesModule
   ],
   controllers: [AppController],
   providers: [AppService],
