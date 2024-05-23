@@ -20,11 +20,10 @@ export class NewsService{
             newsText: newsData.newsText,
             createDate: new Date(),
             updateDate: new Date(),
-            // stateArchive: newsData.stateArchive,
             images: newsData.images,
             views: 0,
-            //favouritos: newsData.favouritos,
-            //satellitesId: newsData.satellitesId,
+            favouritos: 0,
+            satellitesId: newsData.satellitesId,
             eventsId: newsData.eventsId,
             lecturesId: newsData.lecturesId,
             galleryId: newsData.galleryId

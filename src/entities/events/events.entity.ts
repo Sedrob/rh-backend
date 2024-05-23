@@ -36,8 +36,6 @@ export class Events{
     @JoinColumn({name: 'userCreateId'})
     userCreateId: User
 
-    // @Column({name: 'reviewsId'})
-    // reviewsId: number
     @ManyToOne(() => StateEvents, (state) => state.id)
     @JoinColumn({name: 'stateId'})
     eventsState: StateEvents
@@ -53,7 +51,7 @@ export class Events{
     @JoinColumn({name: 'satellites_id'})
     satellitesId: Satellites
 
-    @Column({name: 'dateStart', type: 'timestamp', nullable: true})//Убрать Null
+    @Column({name: 'dateStart', type: 'timestamp'})//Убрать Null
     dateStart: Date
 
     @Column({name: 'dateEnd', type: 'timestamp'})

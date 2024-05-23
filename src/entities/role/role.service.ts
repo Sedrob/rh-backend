@@ -13,7 +13,6 @@ export class UserRoleServices{
             name: roleDate.name,
             decription: roleDate.decription,
             code: roleDate.code,
-            test: roleDate.test,
         }) //создаем переменную с данными от контроллера
         return await this.RoleRepository.save(newRole)
     }
