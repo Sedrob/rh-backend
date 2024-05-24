@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from '@entities/app.controller';
 import { AppService } from './app.service';
+import { HttpModule } from '@nestjs/axios';
 
 import { ConfigModule } from './config.module';
 import { TypeOrmModule } from './db/typeorm.module';
@@ -29,6 +30,7 @@ import { SatellitesModule } from '@entities/satellites/satellites.module';
 
 @Module({
   imports: [
+    HttpModule,
     ConfigModule,
     TypeOrmModule,
     UserModule,
