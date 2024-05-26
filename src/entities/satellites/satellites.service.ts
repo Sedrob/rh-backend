@@ -2,11 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Satellites } from "./satellites.entity";
+import { UrlSatellites } from "./cteatingUrlSatellites"
 
 
 @Injectable()
 export class SatellitesService{
-    constructor(@InjectRepository(Satellites) private readonly satellitesRepository: Repository<Satellites>,){}
+    constructor(@InjectRepository(Satellites) private readonly satellitesRepository: Repository<Satellites>,
+                private url:UrlSatellites){}
+    
     public async createSatellites(data: any){
         const newNews = await this.satellitesRepository.save({
             name: data.name,
@@ -26,5 +29,10 @@ export class SatellitesService{
         })
 
         return category
+    }
+
+    public async getDataSatellites(query: any){
+        let vars = await this.url.createUrl(query)
+        return vars
     }
 }
