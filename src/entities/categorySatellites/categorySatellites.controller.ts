@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe } from "@nestjs/common";
 import { Response, Request } from "express";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {CreateSatellitesDto} from "@entities/satellites/createSatellitesDto";
+import { СategorySatellitesDto } from "./categorySatellitesDto";
 import { CategorySatellitesService } from "./categorySatellites.service";
 
 @ApiTags('категории спутника')
@@ -25,31 +25,16 @@ export class CategorySatellitesController{
     } 
 
     @Post('/')
-    // @ApiOperation({ summary: 'Создание спутника.' })
-    // @ApiBody({
-    //     type: CreateSatellitesDto,
-    //     examples: {
-    //         default: {
-    //             value: {
-    //                 name: "название",
-    //                 title: "заголовок",
-    //                 purpose: "цель",
-    //                 objectiv: "задача",
-    //                 target: "назначение",
-    //                 dateOrbit: new Date(),
-    //                 stateArchive: false,
-    //             },
-    //         },
-    //     },
-    // })
-    // @ApiResponse({status: 201, description: 'создано', content: {
-    //         'application/json' : {
-    //             example: {
-    //                 status: 'ok'
-    //             }
-    //         }
-    //     }
-    // })
+    @ApiOperation({ summary: 'Создание категории' })
+    @ApiBody({
+        type: СategorySatellitesDto,
+        examples: { default: { value: {
+                name: "название",
+                tag: "Короткое название",
+                satellites: "Связь спутника",
+            },},},
+    })
+    @ApiResponse({status: 201, description: 'создано'})
     async createSatellites(@Req() req:Request, @Res() res: Response){
         const result = await this.categoryServices.createCategory(req.body)
         return res.send({

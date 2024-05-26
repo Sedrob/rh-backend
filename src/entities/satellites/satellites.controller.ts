@@ -5,10 +5,6 @@ import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateSatellitesDto} from "@entities/satellites/createSatellitesDto";
 import { HttpService } from "@nestjs/axios";
 
-const url1 = "http://5.189.193.45:8080/telesat/hs/services/RS8S/telemetry?DateFrom=2024-01-01T00:00:00&DateTo=2024-05-31T23:59:59&parameters=TempB1,TempB2,CAKB&key=UvHsIqCHFWMljiuorYzs6MKVFGf62cfqCXSIMKdKEMBa8bu6ZONVBDgtB2dwOeXZ";
-const url3 = "http://5.189.193.45:8080/telesat/hs/services/RS8S/telemetry?DateFrom=2024-01-01T00:00:00&DateTo=2024-05-31T23:59:59&parameters=TempB1&key=UvHsIqCHFWMljiuorYzs6MKVFGf62cfqCXSIMKdKEMBa8bu6ZONVBDgtB2dwOeXZ";
-const url2 = "http://5.189.193.45:8080/telesat/hs/services/RS8S/telemetry?DateFrom=2024-01-01T00:00:00&DateTo=2024-05-31T23:59:59&parameters=TempB1&key=UvHsIqCHFWMljiuorYzs6MKVFGf62cfqCXSIMKdKEMBa8bu6ZONVBDgtB2dwOeXZ";
-const url4 = "http://5.189.193.45:8080/telesat/hs/services/RS8S/telemetry?DateFrom=2024-01-01T00:00:00&DateTo=2024-05-31T23:59:59&parameters=TempB1&key=UvHsIqCHFWMljiuorYzs6MKVFGf62cfqCXSIMKdKEMBa8bu6ZONVBDgtB2dwOeXZ"
 @ApiTags('спутник')
 @Controller('satellites')
 export class SatellitesController{
@@ -29,12 +25,20 @@ export class SatellitesController{
         })
     } 
 
-    @Get('/data')
+    @Get('/dataSend')
     async getDataSatellites(){
-        return this.HttpService.axiosRef.get(url1).then((response) => response.data);
+        return 'There will be a sending to the post email'//this.HttpService.axiosRef.get(url1).then((response) => response.data);
     }
 
-    @Get('/dataSend')
+    @Get('/data')
+    @ApiOperation({summary: 'Составление запроса на сервер спутника', description: 'Ожидаемые теги и значения в url '})
+    @ApiResponse({description: "Json с массивом данных"})
+    @ApiBody({type: String, examples: { default: {value: {
+            DateFrom: "Дата в формате 'DateFrom=2024-03-01T00:00:00'",
+            DateTo: "Дата в формате 'DateTo=2024-05-01T00:00:00'",
+            parameters: "Категории в формате 'parameters=TempB1,TempB2,CAKB'"
+        }
+    }}})
     async getDataSatellitesSend(@Query() query: string){
         const url = await this.satellitesServices.getDataSatellites(query)
         console.log(url)
