@@ -12,7 +12,7 @@ import { AppService } from 'src/app.service';
     TypeOrmModule.forFeature([ User ]),
   ],
   controllers: [ UserController ],
-  providers: [ UserServices ],
-  exports: [UserServices, AppService],
+  providers: [ UserServices, AppService ],
+  exports: [UserServices],
 })
 export class UserModule {}
