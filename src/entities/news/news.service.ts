@@ -84,6 +84,8 @@ export class NewsService{
         news.stateArchive = true
         
         await this.newsRepository.save(news)
+
+        return `Удаление новости id = ${id} прошло успешно`
     }
   
     private validateNewsRequest(newsData: any)

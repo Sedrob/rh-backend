@@ -5,12 +5,14 @@ import { Response, Request } from "express";
 import { UserServices } from "./user.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateUserDto} from "@entities/user/createUserDto";
+import { AppService } from "src/app.service";
 
 @ApiTags("пользователь")
 @Controller('users')
 export class UserController {
     constructor(
         private readonly userServices: UserServices,
+        private readonly appService: AppService
     ){}
 
 
@@ -40,15 +42,10 @@ export class UserController {
         }
     })
     async getUsers(@Req() req: Request, @Res() res: Response, @Param("id",ParseIntPipe) id: number){ // ParseIntPipe - Сделать получение данных int 
-        const userData = await this.userServices.getUserData(id)
+        const result = await this.userServices.getUserData(id)
 
-        delete userData.password //Убрать вывод строки 
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: userData
-        }) //Получаем id пользователя 
+        delete result.password //Убрать вывод строки 
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result)) //Получаем id пользователя 
     }
 
     @Post('/') // ':' - парам забирается из url  
@@ -81,12 +78,7 @@ export class UserController {
     async createUser(@Req() req: Request, @Res() res: Response, ){
 
         const result = await this.userServices.createUser(req.body)
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     @Get('/users') // '/' - выглядит как users/
@@ -101,12 +93,7 @@ export class UserController {
     })
     async getAll(@Req() req: Request, @Res() res: Response, ){
         const result = this.userServices.getAllUsers(req.body)
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        });
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result));
     }
 
     @Post('/user/delete')
@@ -130,9 +117,9 @@ export class UserController {
         }
     })
     async registration(@Req() req: Request, @Res() res: Response, ) {
-        await  this.userServices.remove(req.body)
+        let message = await  this.userServices.remove(req.body)
 
-        return res.send({status: "ok"})
+        return res.send(this.appService.getSendReply('succes', 200, message))
     }
 }
 

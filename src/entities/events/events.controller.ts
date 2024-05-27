@@ -3,12 +3,14 @@ import { Response, Request } from "express";
 import { EventsService } from "./events.service";
 import {ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateEventDto} from "@entities/events/createEventDto";
+import { AppService } from "src/app.service";
 
 @ApiTags("событие")
 @Controller('events')
 export class EventsController{
     constructor(
         private readonly newsServices: EventsService,
+        private readonly appService: AppService
     ){}
 
     @Get('/')
@@ -42,12 +44,7 @@ export class EventsController{
         }})
     async getEvent(@Req() req: Request, @Res() res: Response){
         const result = await this.newsServices.getAllEvents()
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     // Запрос на создание новости 
@@ -83,12 +80,7 @@ export class EventsController{
     })
     async createEvent(@Req() req:Request, @Res() res: Response){
         const result = await this.newsServices.createEvent(req.body)
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     @Delete('/:id')
@@ -103,8 +95,8 @@ export class EventsController{
         }
     })
     async deleteNews(@Param('id', new ParseIntPipe()) id: number, @Res() res: Response){
-        console.log(id)
-        await this.newsServices.deleteEvent(id)
-        return res.send({status: 'ok'})
+        // console.log(id)
+        let result = await this.newsServices.deleteEvent(id)
+        return res.send(this.appService.getSendReply('succes', 200, result))
     }
 }

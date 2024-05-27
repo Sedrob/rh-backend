@@ -4,6 +4,7 @@ import { SatellitesService } from "./satellites.service";
 import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateSatellitesDto} from "@entities/satellites/createSatellitesDto";
 import { HttpService } from "@nestjs/axios";
+import { AppService } from "src/app.service";
 
 @ApiTags('спутник')
 @Controller('satellites')
@@ -11,18 +12,14 @@ export class SatellitesController{
     constructor(
         private readonly satellitesServices: SatellitesService,
         private readonly HttpService: HttpService,
+        private readonly appService: AppService
     ){}
     @Get('/')
     @ApiOperation({ summary: 'Получение спутника. В разработке.' })
     @ApiResponse({status: 200, description: "ok"})
     async getSatellites(@Req() req: Request, @Res() res: Response){
         const result = await this.satellitesServices.getAllSatellites() 
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     } 
 
     @Get('/dataSend')
@@ -41,7 +38,7 @@ export class SatellitesController{
     }}})
     async getDataSatellitesSend(@Query() query: string){
         const url = await this.satellitesServices.getDataSatellites(query)
-        console.log(url)
+        // console.log(url)
         return this.HttpService.axiosRef.get(url).then((response) => response.data);
     }
 
@@ -73,11 +70,6 @@ export class SatellitesController{
     })
     async createSatellites(@Req() req:Request, @Res() res: Response){
         const result = await this.satellitesServices.createSatellites(req.body)
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 }

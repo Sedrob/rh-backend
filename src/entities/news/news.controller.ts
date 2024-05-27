@@ -3,12 +3,14 @@ import { Response, Request } from "express";
 import { NewsService } from "./news.service";
 import {ApiBody, ApiOperation, ApiParam, ApiProperty, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateNewsDto} from "@entities/news/createNewsDto";
+import { AppService } from "src/app.service";
 
 @ApiTags('новости')
 @Controller('news')
 export class NewsController{
     constructor(
         private readonly newsServices: NewsService,
+        private readonly appService: AppService
     ){}
 
     @Get('/')
@@ -39,12 +41,7 @@ export class NewsController{
     })
     async getNews(@Req() req: Request, @Res() res: Response){
         const result = await this.newsServices.getAllNews()
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     @Get('/:id')
@@ -86,12 +83,7 @@ export class NewsController{
     })
     async getNewsById(@Param('id', new ParseIntPipe()) id, @Res() res: Response){
         const result = await this.newsServices.getNewsById(id)
-        return res.send({
-            status: 'success',
-            code: 200,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     // Запрос на создание новости 
@@ -129,12 +121,7 @@ export class NewsController{
     })
     async createNews(@Req() req:Request, @Res() res: Response){
         const result = await this.newsServices.createNews(req.body)
-        return res.send({
-            status: 'success',
-            code: 201,
-            message: '',
-            data: result
-        })
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     @Delete('/:id')
@@ -149,7 +136,7 @@ export class NewsController{
         }
     })
     async deleteNews(@Param('id', new ParseIntPipe()) id: number, @Res() res: Response){
-        await this.newsServices.deleteNews(id)
-        return res.send({status: 'ok'})
+        let message = await this.newsServices.deleteNews(id)
+        return res.send(this.appService.getSendReply('succes', 200, message))
     }
 }
