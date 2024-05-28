@@ -16,14 +16,12 @@ export class AuthController {
 
     @Post('/login')
     login(@Body() userData: CreateUserDto) {
-        let result =  this.authService.login(userData)
-        return this.appService.getSendReply('succes', 200, ' ', result)
+        return this.appService.getSendReply('succes', 200, ' ', this.authService.login(userData))
     }
 
     @Post('/registration')
     registration(@Body() userData: CreateUserDto) {
-        let result = this.authService.registration(userData)
-        return this.appService.getSendReply('succes', 200, ' ', result)
+        return this.appService.getSendReply('succes', 200, ' ', this.authService.login(userData))
     }
 
 }
