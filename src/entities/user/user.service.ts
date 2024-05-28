@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
 import { User } from './user.entity'
-// services поставщик данных
 @Injectable()
 export class UserServices{
     constructor(@InjectRepository(User) private readonly userRepository: Repository<User>,)
@@ -12,12 +11,6 @@ export class UserServices{
     }
 
     public async createUser(userData: any){
-        // const newUser = await this.userRepository.findOne({
-        //     where: {
-        //         email: userData.email
-        //     }
-        // })
-        // if (newUser) throw new ('Уже есть')//создаем переменную с данными от контроллера ПРОВЕРКА НА РЕГИСТРАЦИЮ 
         const newUser = await this.userRepository.save({
             middleName: userData.middleName,
             firsName: userData.firsName,
@@ -26,14 +19,12 @@ export class UserServices{
             email: userData.email,
             pallada: userData.pallada,
             roles: userData.roles
-        }) //создаем переменную с данными от контроллера
-        return await this.userRepository.save(newUser) // сохраняем данные переданные от контроллера
+        }) 
+        return await this.userRepository.save(newUser) 
     }
-//Получаем Юзера
     public async getUserData(id: any){
         console.log('id==', id)
         return await this.userRepository.findOne({where: {id}})
-        //return await this.userRepository.save(newUser) // сохраняем данные переданные от контроллера
     }
     public async getAllUsers(userData: any){
         const users = await this.userRepository.find();
@@ -47,7 +38,7 @@ export class UserServices{
     public async remove(id: string){
         const delUser = await this.userRepository.delete(id)
         console.log('delete user completed');
-        return delUser;
+        return `delete user = ${id} completed`;
 
     }
 

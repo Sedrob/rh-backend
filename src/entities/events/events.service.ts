@@ -47,5 +47,7 @@ export class EventsService{
         event.delete = true
         
         await this.newsRepository.save(event)
+        
+        return `Мероприятие ${id} занесено в архив`
     }
 }
