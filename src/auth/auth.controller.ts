@@ -15,13 +15,15 @@ export class AuthController {
     }
 
     @Post('/login')
-    login(@Body() userData: CreateUserDto) {
-        return this.appService.getSendReply('succes', 200, ' ', this.authService.login(userData))
+    async login(@Body() userData: CreateUserDto) {
+        let result = await this.authService.login(userData)
+        return this.appService.getSendReply('succes', 200, ' ', result)
     }
 
     @Post('/registration')
-    registration(@Body() userData: CreateUserDto) {
-        return this.appService.getSendReply('succes', 200, ' ', this.authService.login(userData))
+    async registration(@Body() userData: CreateUserDto) {
+        let result = await this.authService.login(userData)
+        return this.appService.getSendReply('succes', 200, ' ', result)
     }
 
 }
