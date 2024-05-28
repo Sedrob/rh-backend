@@ -3,11 +3,12 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserModule } from '@entities/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
+import { AppService } from 'src/app.service';
 
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, AppService],
   imports: [
     UserModule,
     JwtModule.register({
