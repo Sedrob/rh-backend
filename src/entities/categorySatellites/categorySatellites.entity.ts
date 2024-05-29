@@ -13,7 +13,7 @@ export class CategorySatellites{
     tag: string
 
     @ManyToOne(() => Satellites, (satellites) => satellites.id,)//(OnDelete: 'CASCADE')
-    @JoinColumn({ name: 'role_id'})  
+    @JoinColumn({ name: 'satellites_id'})  
     satellites: Satellites
 
 }
