@@ -19,7 +19,6 @@ export class EventsService{
             userCreateId: eventsData.userCreateId,
             eventsState: eventsData.eventsState,
             eventsType: eventsData.eventsType,
-            delete: eventsData.delete,
             satellitesId: eventsData.satellitesId,
             dateStart: eventsData.dateStart,
             dateEnd: eventsData.dateEnd
@@ -30,7 +29,7 @@ export class EventsService{
     public async getAllEvents()
     {
         return await this.newsRepository.find({
-            select: ['name', 'subtitle', 'dateStart', 'dateEnd', 'newsId', 'eventsType'],
+            select: ['id' ,'name', 'subtitle', 'dateStart', 'dateEnd', 'newsId', 'eventsType'],
             relations: ['newsId', 'eventsType']
         });
     }
