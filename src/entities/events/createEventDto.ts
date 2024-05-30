@@ -8,39 +8,33 @@ import {ApiProperty} from "@nestjs/swagger";
 
 export class CreateEventDto
 {
-    @ApiProperty({ description: "Название события" })
+    @ApiProperty({ description: "Название события *" })
     name: string
 
-    @ApiProperty({ description: "Подзаголовок события"})
+    @ApiProperty({ description: "Подзаголовок события *"})
     subtitle: string
 
-    @ApiProperty({ description: "Описание события" })
+    @ApiProperty({ description: "Описание события *" })
     description: string
 
-    @ApiProperty({ description: "Подписка на событие"})
-    signedUp: number
-
     @ApiProperty({description: "ID новости"})
-    newsId: number
+    newsId: number | null
 
-    @ApiProperty({description: "ID создателя события"})
+    @ApiProperty({description: "ID создателя события *"})
     userCreateId: number
 
-    @ApiProperty( {description: "Id состояния события"})
+    @ApiProperty( {description: "Id состояния события *"})
     eventsState: number
 
-    @ApiProperty({description: "ID типа события"})
+    @ApiProperty({description: "ID типа события *"})
     eventsType: number
 
-    @ApiProperty( {description: "Удален"})
-    delete: boolean
-
     @ApiProperty({description: "ID спутника"})
-    satellitesId: number
+    satellitesId: number | null
 
-    @ApiProperty({ description: "Дата начала"})
+    @ApiProperty({ description: "Дата начала *"})
     dateStart: Date
 
-    @ApiProperty({ description: "Дата окончания"})
+    @ApiProperty({ description: "Дата окончания *"})
     dateEnd: Date
 }

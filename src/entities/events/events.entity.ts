@@ -25,8 +25,8 @@ export class Events{
     @Column({ name: 'description', type: 'varchar'})
     description: string
 
-    @Column({ name: 'signedUp', nullable: true})
-    signedUp: number
+    // @Column({ name: 'signedUp', nullable: true})
+    // signedUp: number
 
     @OneToOne(() => News, (news) => news.id)
     @JoinColumn({name: 'news_id'})
