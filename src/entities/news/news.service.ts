@@ -35,7 +35,7 @@ export class NewsService{
         
 
         let news =  await this.newsRepository.find({
-            select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'images'],
+            select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'images', 'stateArchive'],
             relations: ['category' ,'images']
         })
         
@@ -67,7 +67,8 @@ export class NewsService{
                 'views',
                 'category',
                 'images',
-                'satellitesId'],
+                'satellitesId',
+                'stateArchive'],
             where: {id: id},
             relations: ['category', 'images', 'satellitesId']
         })
