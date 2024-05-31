@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM  huecker.io/library/node:18-alpine
 
 USER root
 WORKDIR /var/www/rh_backend/app
