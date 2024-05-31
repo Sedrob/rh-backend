@@ -32,11 +32,11 @@ export class NewsService{
     }
     public async getAllNews()
     {
-        
-
-        let news =  await this.newsRepository.find({
+        const news =  await this.newsRepository.find({
             select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'images', 'stateArchive'],
-            relations: ['category' ,'images']
+            where: {stateArchive: true},
+            relations: ['category' ,'images'],
+            order: {createDate: 'DESC'}
         })
         
 
