@@ -13,7 +13,7 @@ import { NewsCategoryModule } from '@entities/newsCategory/newsCategory.module';
 import { ImageGalleryModule } from '@entities/imageGallery/imageGallery.module';
 import { ImageHashModule } from '@entities/imageHash/imageHash.module';
 import { GalleryModule } from '@entities/gallery/gallery.module';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from '@entities/auth/auth.module';
 import { EventsModule } from '@entities/events/events.module';
 import { EventsReviewsModule } from '@entities/eventReviews/eventReviews.module';
 import { StateEventsModule } from '@entities/stateEvents/stateEvents.module';
@@ -27,6 +27,7 @@ import { eventsRolesModule } from '@entities/eventsRoles/eventsRoles.module';
 import { signedUpModule } from '@entities/eventsSignUp/eventsSignUp.module';
 import { CategorySatellitesModule } from '@entities/categorySatellites/categorySatellites.module';
 import { SatellitesModule } from '@entities/satellites/satellites.module';
+
 
 @Module({
   imports: [
