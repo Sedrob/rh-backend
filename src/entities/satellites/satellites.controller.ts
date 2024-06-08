@@ -30,7 +30,7 @@ export class SatellitesController{
         const result = new PdfService().generatePfgFile(data)
 
         res.set({
-            'Content-Type': 'application/pdf',
+            'Content-Type': 'application/octet-stream',
             'Content-Length': result.byteLength,
             'Content-Disposition': 'inline; filename=data.pdf'
         }).send(Buffer.from(result));
