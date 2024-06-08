@@ -5,6 +5,7 @@ import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateSatellitesDto} from "@entities/satellites/createSatellitesDto";
 import { HttpService } from "@nestjs/axios";
 import { AppService } from "src/app.service";
+import {PdfService} from "../../common/PdfService";
 
 @ApiTags('спутник')
 @Controller('satellites')
@@ -23,8 +24,16 @@ export class SatellitesController{
     } 
 
     @Get('/dataSend')
-    async getDataSatellites(){
-        return 'There will be a sending to the post email'//this.HttpService.axiosRef.get(url1).then((response) => response.data);
+    async getDataSatellites(@Query() query: string, @Res() res: Response){
+        const url = await this.satellitesServices.getDataSatellites(query)
+        const data = await this.HttpService.axiosRef.get(url).then((response) => response.data);
+        const result = new PdfService().generatePfgFile(data)
+
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Length': result.byteLength,
+            'Content-Disposition': 'inline; filename=data.pdf'
+        }).send(Buffer.from(result));
     }
 
     @Get('/data')
