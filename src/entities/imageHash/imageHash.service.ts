@@ -6,14 +6,14 @@ import { ImageHash } from "./imageHash.entity";
 
 @Injectable()
 export class ImageHashService{
-    constructor(@InjectRepository(ImageHash) private readonly newsRepository: Repository<ImageHash>,){}
+    constructor(@InjectRepository(ImageHash) private readonly imageRepository: Repository<ImageHash>,){}
     // Создание записи в БД
-    public async createImage(ImageData: any){
-        const galleryNew = await this.newsRepository.save({
-            imageName: ImageData.imageName,
-            description: ImageData.description,
-            fileHash: ImageData.fileHash,
+    public async createImage(file: Express.Multer.File){
+        const galleryNew = await this.imageRepository.save({
+            imageName: file.originalname,
+            description: file.mimetype,
+            fileHash: file.filename,
         })
-        return await this.newsRepository.save(galleryNew);
+        return await this.imageRepository.save(galleryNew);
     } 
 }
