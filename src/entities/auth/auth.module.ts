@@ -4,12 +4,15 @@ import { AuthService } from './auth.service';
 import { UserModule } from '@entities/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AppService } from 'src/app.service';
+import { Tokens } from './token.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 
 @Module({
   controllers: [AuthController],
   providers: [AuthService, AppService],
   imports: [
+    TypeOrmModule.forFeature([ Tokens ]),
     UserModule,
     JwtModule.register({
       secret: process.env.PRIVATE_KEY || 'SECRET',
