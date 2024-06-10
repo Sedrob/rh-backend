@@ -41,7 +41,7 @@ export class NewsService{
     public async getAllNews()
     {
         const news =  await this.newsRepository.find({
-            select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'images', 'stateArchive'],
+            select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'image', 'stateArchive'],
             where: {stateArchive: false},
             relations: ['category' ,'images'],
             order: {createDate: 'DESC'}
