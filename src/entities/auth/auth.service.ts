@@ -4,20 +4,25 @@ import * as bcrypt from 'bcrypt';
 import { User } from '@entities/user/user.entity';
 import { UserServices } from '@entities/user/user.service'; 
 import { CreateUserDto } from '@entities/user/createUserDto';
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { Tokens } from "./token.entity";
+import { v4 } from 'uuid';
 
 
 @Injectable()
 export class AuthService {
 
-    constructor(private userService: UserServices,
+    constructor(@InjectRepository(Tokens) private readonly authRepository: Repository<Tokens>,
+                private userService: UserServices,
                 private jwtService: JwtService){}
 
     
     async login( userData: CreateUserDto) {
         const user = await this.validateUser(userData)
-        return this.generateToken(user)
-       
-
+        const accessToken = this.generateToken(user)
+        const refreshToken = this.getRefreshToken(user.id)
+        return  (await refreshToken).token
     }
 
     
@@ -33,11 +38,9 @@ export class AuthService {
 
     }
 
-    private async generateToken(user: User) {
-        const payload = {email: user.email, id: user.id}
-        return {
-            token: this.jwtService.sign(payload)
-        }
+     async generateToken(user: User) {
+        const accessToken = this.jwtService.sign ({email: user.email, id: user.id})
+        return accessToken
     }
 
     private async validateUser(userData: CreateUserDto){
@@ -49,4 +52,17 @@ export class AuthService {
             throw new UnauthorizedException({message: 'Некорректный логин или пароль'})
     }
 
+        async getRefreshToken (id: any): Promise<Tokens> {
+        const refreshToken =  this.authRepository.save({
+            user_id: id,
+            token: v4()
+        })  
+        return refreshToken
+    }
+    public async getUserByEmail(id: any){
+        const user = await this.authRepository.findOne({where: {id}})
+        return user;
+    }
 }
+
+
