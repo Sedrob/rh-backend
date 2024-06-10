@@ -32,8 +32,8 @@ export class News{
     stateArchive: boolean
 
     @ManyToOne(() => ImageHash, (ImageHash) => ImageHash.id)
-    @JoinColumn({ name: 'images'})
-    images: ImageHash
+    @JoinColumn({ name: 'image'})
+    image: ImageHash
 
     @Column({ name: 'views', type: 'integer' })
     views: number
