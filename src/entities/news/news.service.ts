@@ -43,7 +43,7 @@ export class NewsService{
         const news =  await this.newsRepository.find({
             select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'image', 'stateArchive'],
             where: {stateArchive: false},
-            relations: ['category' ,'images'],
+            relations: ['category' ,'image'],
             order: {createDate: 'DESC'}
         })
         
