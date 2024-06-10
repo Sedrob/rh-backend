@@ -28,7 +28,7 @@ export class NewsService{
             newsText: newsData.newsText,
             createDate: new Date(),
             updateDate: new Date(),
-            images: fileName.id,
+            image: fileName.id,
             views: 0,
             favouritos: 0,
             satellitesId: newsData.satellitesId,
