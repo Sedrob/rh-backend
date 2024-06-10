@@ -35,7 +35,7 @@ export class ImageHashController{
             },
         }, 
     })
-    async createImages(@UploadedFile() file: Express.Multer.File){
+    async createImage(@UploadedFile() file: Express.Multer.File){
         const result = await this.imageServices.createImage(file)
         return result
     }

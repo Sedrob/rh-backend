@@ -1,16 +1,24 @@
 import {BadRequestException, Inject, Injectable} from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import { Express } from "express";
 import { News } from "./news.entity";
 import {ImageGalleryService} from "@entities/imageGallery/imageGallery.service";
+import { ImageHashService } from "@entities/imageHash/imageHash.service";
 
 
 @Injectable()
 export class NewsService{
-    constructor(@InjectRepository(News) private readonly newsRepository: Repository<News>){}
+    constructor(@InjectRepository(News) private readonly newsRepository: Repository<News>,
+        private readonly imageHash: ImageHashService)
+    {}
     // Создание записи нововсти в БД
-    public async createNews(newsData: any){
-        
+    public async createNews(newsData: any, file?: Express.Multer.File){
+        let fileName;
+        if (file){
+            fileName = await this.imageHash.createImage(file)
+        }
+        console.log(fileName)
         this.validateNewsRequest(newsData)
         
         const newNews = await this.newsRepository.save({
@@ -20,7 +28,7 @@ export class NewsService{
             newsText: newsData.newsText,
             createDate: new Date(),
             updateDate: new Date(),
-            images: newsData.images,
+            images: fileName.id,
             views: 0,
             favouritos: 0,
             satellitesId: newsData.satellitesId,

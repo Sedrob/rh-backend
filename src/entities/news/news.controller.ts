@@ -1,9 +1,11 @@
-import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe } from "@nestjs/common";
-import { Response, Request } from "express";
+import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe, UploadedFile } from "@nestjs/common";
+import { Response, Request, Express } from "express";
 import { NewsService } from "./news.service";
 import {ApiBody, ApiOperation, ApiParam, ApiProperty, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateNewsDto} from "@entities/news/createNewsDto";
 import { AppService } from "src/app.service";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { fileStorage } from "@entities/imageHash/storage";
 
 @ApiTags('новости')
 @Controller('news')
@@ -88,6 +90,7 @@ export class NewsController{
 
     // Запрос на создание новости 
     @Post('/')
+    @UseInterceptors(FileInterceptor('file', {storage: fileStorage}))
     @ApiOperation({ summary: 'Создание новости' })
     @ApiBody({
         type: CreateNewsDto,
@@ -119,8 +122,8 @@ export class NewsController{
             }
         }
     })
-    async createNews(@Req() req:Request, @Res() res: Response){
-        const result = await this.newsServices.createNews(req.body)
+    async createNews(@Req() req:Request, @Res() res: Response, @UploadedFile() file: Express.Multer.File){
+        const result = await this.newsServices.createNews(req.body, file)
         return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
