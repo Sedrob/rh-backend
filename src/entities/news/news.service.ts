@@ -74,11 +74,11 @@ export class NewsService{
                 'createDate',
                 'views',
                 'category',
-                'images',
+                'image',
                 'satellitesId',
                 'stateArchive'],
             where: {id: id},
-            relations: ['category', 'images', 'satellitesId']
+            relations: ['category', 'image', 'satellitesId']
         })
     }
     
