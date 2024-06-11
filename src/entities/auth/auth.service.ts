@@ -79,7 +79,7 @@ export class AuthService {
                 'user_id'
             ], 
             where: {token: token},
-            relations: ['user_id']
+            relations: ['user_id','user_id.roles']
         })
         if (userid) {
             delete userid.user_id.password
