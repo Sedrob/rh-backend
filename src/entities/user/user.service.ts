@@ -6,11 +6,10 @@ import { User } from './user.entity'
 @Injectable()
 export class UserServices{
     constructor(@InjectRepository(User) private readonly userRepository: Repository<User>,)
-    {
-
-    }
+    {}
 
     public async createUser(userData: any){
+        userData.roles = 1 //Временное решение 
         const newUser = await this.userRepository.save({
             middleName: userData.middleName,
             firsName: userData.firsName,
