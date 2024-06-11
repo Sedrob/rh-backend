@@ -14,6 +14,7 @@ import { v4 } from 'uuid';
 export class AuthService {
 
     constructor(@InjectRepository(Tokens) private readonly authRepository: Repository<Tokens>,
+                @InjectRepository(User) private readonly userRepository: Repository<User>,
                 private userService: UserServices,
                 private jwtService: JwtService){}
 
@@ -62,6 +63,31 @@ export class AuthService {
     public async getUserByEmail(id: any){
         const user = await this.authRepository.findOne({where: {id}})
         return user;
+    }
+
+    public async getInit(token: string){
+        if (token){
+            token = token.replace('token=', '')
+        }
+        else{
+            return "Пользователь не авторизован"
+        }
+        const userid = await this.authRepository.findOne({
+            select: [
+                'id',
+                'token',
+                'user_id'
+            ], 
+            where: {token: token},
+            relations: ['user_id']
+        })
+        if (userid) {
+            delete userid.user_id.password
+        }
+        else{
+            return `Авторизация токена ${token} закончилась или не зарегестрирована`
+        }
+        return userid.user_id
     }
 }
 

@@ -6,6 +6,7 @@ import { CreateUserDto } from "@entities/user/createUserDto";
 import { AppService } from "src/app.service";
 import { ConfigService } from "@nestjs/config";
 import { Tokens } from "./token.entity";
+import { request } from "http";
 
 
 const REFRESH_TOKEN = 'token';
@@ -18,6 +19,12 @@ export class AuthController {
         private readonly appService: AppService,
         private readonly configService: ConfigService 
     ) {
+    }
+
+    @Get('/init')
+    async init(@Req() req: Request, @Res() res:Response){
+        const result = await this.authService.getInit(req.headers.cookie)
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     @Post('/login')
