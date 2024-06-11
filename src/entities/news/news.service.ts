@@ -41,24 +41,11 @@ export class NewsService{
     public async getAllNews()
     {
         const news =  await this.newsRepository.find({
-            select: ['id', 'title', 'newsText', 'category', 'createDate', 'views', 'image', 'stateArchive'],
+            select: ['id', 'title', 'subtitle', 'newsText', 'category', 'createDate', 'views', 'image', 'stateArchive'],
             where: {stateArchive: false},
             relations: ['category' ,'image'],
             order: {createDate: 'DESC'}
         })
-        
-
-        // news.forEach((item) => {
-        //     const images = item.images.fileHash
-        //     if (images !== null && images.length > 1)
-        //     {
-        //         item.images.fileHash = fileHash
-        //     }
-        //     else
-        //     {
-
-        //     }
-        // })
 
         return news
     }

@@ -19,7 +19,8 @@ export class UserController {
     @Get('/') // '/' - выглядит как users/
     @ApiOperation({summary: "Получение всех пользователей. В разработке."})
     async getAllUsers(@Req() req: Request, @Res() res: Response, ){
-
+        const result = await this.userServices.getAllUsers(req.body)
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 
     @Get('/:id') // ':' - парам забирается из url
@@ -48,7 +49,22 @@ export class UserController {
         return res.send(this.appService.getSendReply('succes', 200, ' ', result)) //Получаем id пользователя 
     }
 
-    @Post('/') // ':' - парам забирается из url  
+    @Get('/users') // '/' - выглядит как users/
+    @ApiOperation({ summary: 'Получение всех пользователей.' })
+    @ApiResponse({status: 201, description: 'создано', content: {
+            'application/json' : {
+                example: {
+                    status: 'ok'
+                }
+            }
+        }
+    })
+    async getAll(@Req() req: Request, @Res() res: Response, ){
+        const result = this.userServices.getAllUsers(req.body)
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result));
+    }
+
+    @Post('/')
     //@UseInterceptors(FileInterceptor('')) // перехватываем файлы и данные
     @ApiOperation({ summary: 'Создание пользователя.' })
     @ApiBody({
@@ -79,21 +95,6 @@ export class UserController {
 
         const result = await this.userServices.createUser(req.body)
         return res.send(this.appService.getSendReply('succes', 200, ' ', result))
-    }
-
-    @Get('/users') // '/' - выглядит как users/
-    @ApiOperation({ summary: 'Получение всех пользователей.' })
-    @ApiResponse({status: 201, description: 'создано', content: {
-            'application/json' : {
-                example: {
-                    status: 'ok'
-                }
-            }
-        }
-    })
-    async getAll(@Req() req: Request, @Res() res: Response, ){
-        const result = this.userServices.getAllUsers(req.body)
-        return res.send(this.appService.getSendReply('succes', 200, ' ', result));
     }
 
     @Post('/user/delete')
