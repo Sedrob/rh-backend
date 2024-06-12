@@ -11,7 +11,7 @@ export class UserRoleServices{
     public async createRole(roleDate: any){
         const newRole = await this.RoleRepository.save({
             name: roleDate.name,
-            decription: roleDate.decription,
+            description: roleDate.description,
             code: roleDate.code,
         }) //создаем переменную с данными от контроллера
         return await this.RoleRepository.save(newRole)
