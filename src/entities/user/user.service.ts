@@ -9,7 +9,7 @@ export class UserServices{
     {}
 
     public async createUser(userData: any){
-        userData.roles = 4 //Временное решение 
+        userData.role = 4 //Временное решение 
         const newUser = await this.userRepository.save({
             middleName: userData.middleName,
             firstName: userData.firstName,
@@ -17,7 +17,7 @@ export class UserServices{
             password: userData.password,
             email: userData.email,
             pallada: userData.pallada,
-            roles: userData.roles
+            role: userData.role
         }) 
         return await this.userRepository.save(newUser) 
     }
