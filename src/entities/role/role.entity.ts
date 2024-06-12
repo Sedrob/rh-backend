@@ -9,8 +9,8 @@ export class UserRole{
     @Column({ name: 'name', type: 'text' })
     name: string
 
-    @Column({ name: 'decription', type: 'text', nullable: true })
-    decription: string
+    @Column({ name: 'description', type: 'text', nullable: true })
+    description: string
 
     @Column({ name: 'code', type: 'varchar' })
     code: string
