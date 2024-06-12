@@ -87,6 +87,6 @@ export class AuthService {
         else{
             return `Авторизация токена ${token} закончилась или не зарегестрирована`
         }
-        return userid.user_id
+        return {user: userid.user_id}
     }
 }

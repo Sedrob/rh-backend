@@ -12,8 +12,8 @@ export class User {
   @Column({ name: 'middle_name', type: 'text' })
     middleName: string
 
-  @Column({ name: 'firs_name', type: 'text' })
-    firsName: string
+  @Column({ name: 'first_name', type: 'text' })
+    firstName: string
 
   @Column({ name: 'last_name', type: 'text' })
     lastName: string
