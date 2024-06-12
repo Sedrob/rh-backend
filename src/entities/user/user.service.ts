@@ -9,10 +9,10 @@ export class UserServices{
     {}
 
     public async createUser(userData: any){
-        userData.roles = 1 //Временное решение 
+        userData.roles = 4 //Временное решение 
         const newUser = await this.userRepository.save({
             middleName: userData.middleName,
-            firsName: userData.firsName,
+            firstName: userData.firstName,
             lastName: userData.lastName,
             password: userData.password,
             email: userData.email,

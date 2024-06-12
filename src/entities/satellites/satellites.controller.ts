@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Post, Req, Res, Put, Patch, UseInterceptors, Param, ParseIntPipe, Query } from "@nestjs/common";
 import { Response, Request, response, query } from "express";
 import { SatellitesService } from "./satellites.service";
-import {ApiBody, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateSatellitesDto} from "@entities/satellites/createSatellitesDto";
 import { HttpService } from "@nestjs/axios";
 import { AppService } from "src/app.service";
@@ -24,6 +24,9 @@ export class SatellitesController{
     } 
 
     @Get('/dataSend')
+    @ApiParam({name: 'DateFrom, DateTo, parameters', description: "пример запроса 'DateFrom=2024-01-01T00:00:00&'", type: Date})
+    @ApiParam({name: 'DateTo', description: "DateTo=2024-05-31T23:59:59&", type: Date})
+    @ApiParam({name: 'parameters',description: "parameters=TempSQL", type: String})
     async getDataSatellites(@Query() query: string, @Res() res: Response){
         const url = await this.satellitesServices.getDataSatellites(query)
         const data = await this.HttpService.axiosRef.get(url).then((response) => response.data);
@@ -37,18 +40,16 @@ export class SatellitesController{
     }
 
     @Get('/data')
-    @ApiOperation({summary: 'Составление запроса на сервер спутника', description: 'Ожидаемые теги и значения в url '})
+    @ApiOperation({summary: 'Составление запроса на сервер спутника', description: 'итоговый путь в url ?DateFrom=2024-01-01T00:00:00&DateTo=2024-05-31T23:59:59&parameters=TempSQL'})
     @ApiResponse({description: "Json с массивом данных"})
-    @ApiBody({type: String, examples: { default: {value: {
-            DateFrom: "Дата в формате 'DateFrom=2024-03-01T00:00:00'",
-            DateTo: "Дата в формате 'DateTo=2024-05-01T00:00:00'",
-            parameters: "Категории в формате 'parameters=TempB1,TempB2,CAKB'"
-        }
-    }}})
-    async getDataSatellitesSend(@Query() query: string){
+    @ApiParam({name: 'DateFrom, DateTo, parameters', description: "пример запроса 'DateFrom=2024-01-01T00:00:00&'", type: Date})
+    @ApiParam({name: 'DateTo', description: "DateTo=2024-05-31T23:59:59&", type: Date})
+    @ApiParam({name: 'parameters',description: "parameters=TempSQL", type: String})
+    async getDataSatellitesSend(@Query() query: string, @Res() res:Response){
         const url = await this.satellitesServices.getDataSatellites(query)
-        // console.log(url)
-        return this.HttpService.axiosRef.get(url).then((response) => response.data);
+        const urlData = await this.HttpService.axiosRef.get(url).then((response) => response.data);
+        const result = await this.satellitesServices.processingData(urlData, query["parameters"])
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result));
     }
 
     @Get('/category')
