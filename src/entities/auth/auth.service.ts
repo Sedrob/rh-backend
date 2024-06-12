@@ -21,9 +21,9 @@ export class AuthService {
     
     async login( userData: CreateUserDto) {
         const user = await this.validateUser(userData)
-        const accessToken = this.generateToken(user)
-        const refreshToken = this.getRefreshToken(user.id)
-        return  (await refreshToken).token
+        const accessToken = await this.generateToken(user)
+        const refreshToken = await this.getRefreshToken(user.id)
+        return {accessToken, RefreshToken: refreshToken.token} 
     }
 
     
@@ -90,5 +90,3 @@ export class AuthService {
         return userid.user_id
     }
 }
-
-
