@@ -24,7 +24,7 @@ export class AuthController {
 
     @Get('/init')
     async init(@Req() req: Request, @Res() res:Response){
-        const result = await this.authService.getInit(req.headers.cookie)
+        const result = await this.authService.getInit(req.headers.authorization)
         return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
 

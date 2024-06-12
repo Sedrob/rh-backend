@@ -51,6 +51,21 @@ export class SatellitesController{
         return this.HttpService.axiosRef.get(url).then((response) => response.data);
     }
 
+    @Get('/category')
+    @ApiOperation({summary: 'Получение данных о категориях'})
+    @ApiResponse({content: {
+        'json': { example: {
+            id: 1,
+            name: "Температура солнечного датчика",
+            tag: "TempSQL"
+        }}
+    }})
+    async getCategorySatellites(@Res() res:Response){
+        const result = await this.satellitesServices.getCategory()
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
+    }
+
+
     @Post('/')
     @ApiOperation({ summary: 'Создание спутника.' })
     @ApiBody({
