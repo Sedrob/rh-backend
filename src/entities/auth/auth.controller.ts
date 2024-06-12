@@ -7,6 +7,7 @@ import { AppService } from "src/app.service";
 import { ConfigService } from "@nestjs/config";
 import { Tokens } from "./token.entity";
 import { request } from "http";
+import { access } from "fs";
 
 
 const REFRESH_TOKEN = 'token';
@@ -28,20 +29,9 @@ export class AuthController {
     }
 
     @Post('/login')
-    async login(@Body() userData: CreateUserDto, @Res() res: Response, token: Tokens) {
+    async login(@Body() userData: CreateUserDto, token: Tokens) {
         let result = await this.authService.login(userData)
-        res.cookie(REFRESH_TOKEN,result, {
-            httpOnly: true,
-            sameSite: 'lax',
-            maxAge: 21 * 24 * 60 * 60 * 1000,
-            // secure: this.configService.get('NODE_ENV', 'development') === 'production',
-            path: '/',
-        })
-        res.status(HttpStatus.CREATED).json(Tokens)
-
-        // this.setRefreshTikenToCookies(res)
         return this.appService.getSendReply('succes', 200, ' ', result)
-        // return res.send(this.appService.getSendReply('succes', 200, ' ', result));
     }
 
     @Post('/registration')
@@ -49,20 +39,4 @@ export class AuthController {
         let result = await this.authService.registration(userData)
         return this.appService.getSendReply('succes', 200, ' ', result)
     }
-
-    // @Get('refresh-tokens')
-    // async
-
-    // private setRefreshTikenToCookies(token: Tokens, res: Response) {
-    //     res.cookie(REFRESH_TOKEN, token.token, {
-    //         httpOnly: true,
-    //         sameSite: 'lax',
-    //         maxAge: 21 * 24 * 60 * 60 * 1000,
-    //         // secure: this.configService.get('NODE_ENV', 'development') === 'production',
-    //         path: '/',
-    //     })
-    //     res.status(HttpStatus.CREATED).json(Tokens)
-    // }
-    
-
 }
