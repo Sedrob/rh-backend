@@ -49,19 +49,19 @@ export class EventsController{
 
     // Запрос на создание новости 
     @Post('/')
-    @ApiOperation({ summary: 'Создание события' })
+    @ApiOperation({ summary: 'Создание события - даты обязательно' })
     @ApiBody({
         type: CreateEventDto,
         examples: {
             default: {
                 value: {
-                    name: "name",
-                    subtitle: "subtitle",
-                    description: "description",
+                    name: "name*",
+                    subtitle: "subtitle*",
+                    description: "description*",
                     newsId: 0,
-                    userCreateId: 0,
-                    eventsState: 0,
-                    eventsType: 0,
+                    userCreateId: 'id*',
+                    eventsState: 'id*',
+                    eventsType: 'id*',
                     delete: false,
                     satellitesId: 0,
                     dateStart: new Date(),

@@ -44,4 +44,31 @@ export class SatellitesService{
         })
         return category
     }
+
+    public async processingData(data: any, queryParams: any){
+        let nameCategory;
+        let indicators = new Array;
+        if (data["Result"]){
+            nameCategory = await this.categoryRepository.findOne({
+                select: ['name'],
+                where: {tag : queryParams}
+            })
+        }
+        else{
+            nameCategory = "По выбранной дате данных нет"
+        }
+        for(let i = 0; i < Object.keys(data["Result"]).length; i++){
+            let values = new Array
+            for(let j = 0; j < Object.keys(data["Result"][i]).length; j++ ){
+                values.push ({
+                    date: Object.entries(data["Result"][i][j]).map(([key, val]) => {return val})[0],
+                    value: Object.entries(data["Result"][i][j]).map(([key, val]) => {return val})[1]
+                });
+            }
+            indicators.push({tag: Object.entries(data["Result"][i][0]).map(([key]) => {return key})[1],
+                data: values.map(item => {return {date: item.date, value: item.value}})
+            })
+        }
+        return { name: nameCategory.name, indicators: Array.from(indicators)}
+    }
 }
