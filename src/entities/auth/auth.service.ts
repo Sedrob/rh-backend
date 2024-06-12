@@ -23,7 +23,7 @@ export class AuthService {
         const user = await this.validateUser(userData)
         const accessToken = await this.generateToken(user)
         const refreshToken = await this.getRefreshToken(user.id)
-        return {accessToken, RefreshToken: refreshToken.token} 
+        return {accessToken, refreshToken: refreshToken.token} 
     }
 
     
