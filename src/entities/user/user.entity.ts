@@ -29,5 +29,5 @@ export class User {
 
   @ManyToOne(() => UserRole, (userRole) => userRole.id,)//(OnDelete: 'CASCADE')
   @JoinColumn({ name: 'role_id'})  
-    roles: UserRole
+    role: UserRole
 }
