@@ -46,7 +46,12 @@ export class EventsController{
         const result = await this.newsServices.getAllEvents()
         return res.send(this.appService.getSendReply('succes', 200, ' ', result))
     }
-
+    
+    @Get('/:id')
+    async getOneEvent(@Res() res:Response, @Param('id', new ParseIntPipe()) id){
+        const result = await this.newsServices.getOneEvents(id)
+        return res.send(this.appService.getSendReply('succes', 200, ' ', result))
+    }
     // Запрос на создание новости 
     @Post('/')
     @ApiOperation({ summary: 'Создание события - даты обязательно' })

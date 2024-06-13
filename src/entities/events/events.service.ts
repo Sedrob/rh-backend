@@ -29,9 +29,16 @@ export class EventsService{
     public async getAllEvents()
     {
         return await this.newsRepository.find({
-            select: ['id' ,'name', 'subtitle', 'dateStart', 'dateEnd', 'newsId', 'eventsType'],
-            relations: ['newsId', 'eventsType']
+            select: ['id' ,'name', 'subtitle', 'description', 'dateCreate', 'dateStart', 'dateEnd', 'eventsType'],
+            relations: ['eventsType']
         });
+    }
+    public async getOneEvents(id: any){
+        return await this.newsRepository.findOne({
+            select: ['id', 'name', 'subtitle', 'description', 'dateCreate', 'dateStart', 'dateEnd', 'eventsType'],
+            where: [{id: id}],
+            relations: ['eventsType']
+        })
     }
     
     public async deleteEvent(id: number)
